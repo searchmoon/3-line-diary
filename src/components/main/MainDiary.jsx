@@ -21,7 +21,7 @@ function MainDiary() {
       {
         value: textValue,
         id: new Date().getTime(),
-        isEdit: false,
+        // isEdit: false,
       },
     ]);
     console.log("왜 안돼?");
@@ -41,11 +41,22 @@ function MainDiary() {
             value={textValue}
             onChange={handleTextChange}
           ></textarea>
-          {textValue && <button onClick={handleClick}>Done</button>}
+          {textValue && (
+            <button className="done-btn" onClick={handleClick}>
+              Done
+            </button>
+          )}
         </div>
-        {diaryList.map((list) => (
-          <DiaryList list={list} key={list.id} />
-        ))}
+        <Ul>
+          {diaryList.map((list) => (
+            <DiaryList
+              list={list}
+              key={list.id}
+              diaryList={diaryList}
+              setDiaryList={setDiaryList}
+            />
+          ))}
+        </Ul>
       </DefaultLayout>
     </MainLayout>
   );
@@ -53,9 +64,9 @@ function MainDiary() {
 
 const MainLayout = styled.div`
   ${DefaultLayout} {
-    // display: flex;
-    // flex-direction: column;
-    background-color: blue;
+    display: flex;
+    flex-direction: column;
+    background-color: lightsalmon;
   }
   .diary-box {
     margin: 0 auto;
@@ -77,7 +88,7 @@ const MainLayout = styled.div`
         outline: 1px solid gray;
       }
     }
-    button {
+    .done-btn {
       color: white;
       font-size: 16px;
       background-color: burlywood;
@@ -98,9 +109,22 @@ const MainLayout = styled.div`
         width: 100%;
         line-height: 1.4;
       }
-      button {
+      .done-btn {
       }
     }
   }
+`;
+const Ul = styled.ul`
+  // display: grid;
+  // grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+  // grid-template-row: repeat(auto-fill, minmax(300px, 1fr));
+  // grid-gap: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 900px;
+  background-color: ivory;
+  // margin: 0 auto;
+  justify-content: center;
+  // flex-direction: column;
 `;
 export default MainDiary;

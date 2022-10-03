@@ -24,5 +24,8 @@ const GlobalStyles = createGlobalStyle`
     button {
       cursor: pointer;
     }
+    ol, ul, li{
+      list-style: none;
+    }
 `;
 export default App;
