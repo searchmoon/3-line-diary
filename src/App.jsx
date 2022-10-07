@@ -1,5 +1,6 @@
 import Home from "./pages/Home";
 import Calendar from "./pages/Calendar";
+import DiaryDetail from "./pages/DiaryDetail";
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/calendar" element={<Calendar />} />
+        <Route path="/diaryDetail" element={<DiaryDetail />} />
       </Routes>
     </BrowserRouter>
   );

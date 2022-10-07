@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from "react";
+import { Link } from "react-router-dom";
 import { DefaultLayout } from "../layout/layout";
 import styled from "styled-components";
 import { respSize } from "../common/common";
@@ -15,7 +16,7 @@ function MainDiary() {
   };
   console.log(textValue);
 
-  const handleClick = () => {
+  const handleDoneClick = () => {
     setDiaryList([
       ...diaryList,
       {
@@ -27,7 +28,7 @@ function MainDiary() {
     console.log("왜 안돼?");
     console.log(textValue);
     console.log(diaryList);
-    // setTextValue("");
+    setTextValue("");
   };
 
   return (
@@ -42,21 +43,26 @@ function MainDiary() {
             onChange={handleTextChange}
           ></textarea>
           {textValue && (
-            <button className="done-btn" onClick={handleClick}>
+            <button className="done-btn" onClick={handleDoneClick}>
               Done
             </button>
           )}
         </div>
-        <Ul>
-          {diaryList.map((list) => (
-            <DiaryList
-              list={list}
-              key={list.id}
-              diaryList={diaryList}
-              setDiaryList={setDiaryList}
-            />
-          ))}
-        </Ul>
+        <Link
+          to={"/diaryDetail"}
+          style={{ textDecoration: "none", color: "white" }}
+        >
+          <Ul>
+            {diaryList.map((list) => (
+              <DiaryList
+                list={list}
+                key={list.id}
+                diaryList={diaryList}
+                setDiaryList={setDiaryList}
+              />
+            ))}
+          </Ul>
+        </Link>
       </DefaultLayout>
     </MainLayout>
   );
@@ -118,7 +124,7 @@ const Ul = styled.ul`
   // display: grid;
   // grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
   // grid-template-row: repeat(auto-fill, minmax(300px, 1fr));
-  // grid-gap: 50px;
+  // grid-gap: 10px;
   display: flex;
   flex-wrap: wrap;
   max-width: 900px;
@@ -127,4 +133,5 @@ const Ul = styled.ul`
   justify-content: center;
   // flex-direction: column;
 `;
+
 export default MainDiary;
