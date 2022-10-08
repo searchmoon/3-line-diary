@@ -5,19 +5,9 @@ const initialState = {};
 export const diarySlice = createSlice({
   name: "diary",
   initialState,
-  reducers: {
-    increment: (state) => {
-      state.value += 1;
-    },
-    decrement: (state) => {
-      state.value -= 1;
-    },
-    incrementByAmount: (state, action) => {
-      state.value += action.payload;
-    },
-  },
+  reducers: {},
 });
 
-export const { increment, decrement, incrementByAmount } = diarySlice.actions;
+export const {} = diarySlice.actions;
 
 export default diarySlice.reducer;
