@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import diarySlice from "../features/diarySlice";
+import diaryReducer from "../features/diarySlice";
 
 export const store = configureStore({
   reducer: {
