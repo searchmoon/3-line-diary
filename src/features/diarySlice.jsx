@@ -20,7 +20,7 @@ export const diarySlice = createSlice({
       state.lists = [
         ...state.lists.filter((item) => item.id !== action.payload.id),
         action.payload,
-      ].sort((a, b) => b.date - a.date);
+      ].sort((a, b) => a.id - b.id);
     },
   },
 });

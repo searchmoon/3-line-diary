@@ -4,30 +4,36 @@ import { DefaultLayout } from "../layout/layout";
 import styled from "styled-components";
 import { respSize } from "../common/common";
 import DiaryList from "./DiaryList";
+import { useDispatch, useSelector } from "react-redux";
+import { addDiaryList } from "../../features/diarySlice";
 
 function MainDiary() {
   const [textValue, setTextValue] = useState("");
-  const [diaryList, setDiaryList] = useState([]);
+  // const [diaryList, setDiaryList] = useState([]);
+  const dispatch = useDispatch();
+  const lists = useSelector((state) => state.diary.lists);
 
   const handleTextChange = (e) => {
     setTextValue(e.target.value);
     console.log("이거", e.target.value);
-    console.log("리스트", diaryList);
+    // console.log("리스트", diaryList);
   };
   console.log(textValue);
 
   const handleDoneClick = () => {
-    setDiaryList([
-      ...diaryList,
-      {
+    dispatch(
+      addDiaryList({
         value: textValue,
         id: new Date().getTime(),
+        date: `${new Date().getFullYear()}년 ${
+          new Date().getMonth() + 1
+        }월 ${new Date().getDay()}일 ${new Date().getHours()}시 ${new Date().getMinutes()}분`,
         // isEdit: false,
-      },
-    ]);
+      })
+    );
     console.log("왜 안돼?");
     console.log(textValue);
-    console.log(diaryList);
+    // console.log(diaryList);
     setTextValue("");
   };
 
@@ -48,21 +54,21 @@ function MainDiary() {
             </button>
           )}
         </div>
-        <Link
+        {/* <Link
           to={"/diaryDetail"}
           style={{ textDecoration: "none", color: "white" }}
-        >
-          <Ul>
-            {diaryList.map((list) => (
-              <DiaryList
-                list={list}
-                key={list.id}
-                diaryList={diaryList}
-                setDiaryList={setDiaryList}
-              />
-            ))}
-          </Ul>
-        </Link>
+        > */}
+        <Ul>
+          {lists.map((list) => (
+            <DiaryList
+              list={list}
+              key={list.id}
+              // diaryList={diaryList}
+              // setDiaryList={setDiaryList}
+            />
+          ))}
+        </Ul>
+        {/* </Link> */}
       </DefaultLayout>
     </MainLayout>
   );

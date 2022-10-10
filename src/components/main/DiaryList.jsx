@@ -1,27 +1,33 @@
 import React, { useCallback, useState } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { doneEditList, deleteList } from "../../features/diarySlice";
 
-const DiaryList = ({ list, diaryList, setDiaryList }) => {
+const DiaryList = ({ list }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [doneEditText, setDoneEditText] = useState(list.value);
+
+  const dispatch = useDispatch();
 
   const handleEditText = () => {
     setIsEditing(!isEditing);
   };
   const handleDoneEdit = (list) => {
-    setDiaryList(
-      [
-        ...diaryList.filter((item) => item.id !== list.id),
-        {
-          value: doneEditText,
-          id: list.id,
-        },
-      ].sort((a, b) => a.id - b.id)
+    dispatch(
+      doneEditList({
+        value: doneEditText,
+        id: list.id,
+      })
     );
     setIsEditing(!isEditing);
   };
   const handleDeleteList = (list) => {
-    setDiaryList(diaryList.filter((item) => item.id !== list.id));
+    dispatch(
+      deleteList({
+        value: list.value,
+        id: list.id,
+      })
+    );
   };
   const handleTextChange = (e) => {
     setDoneEditText(e.target.value);
