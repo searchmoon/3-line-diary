@@ -6,10 +6,15 @@ import { respSize } from "../common/common";
 import DiaryList from "./DiaryList";
 import { useDispatch, useSelector } from "react-redux";
 import { addDiaryList } from "../../features/diarySlice";
+import { Calendar } from "react-calendar";
+import "./calendar.css";
+import moment from "moment";
 
 function MainDiary() {
   const [textValue, setTextValue] = useState("");
   // const [diaryList, setDiaryList] = useState([]);
+  const [value, onChange] = useState(new Date());
+
   const dispatch = useDispatch();
   const lists = useSelector((state) => state.diary.lists);
 
@@ -40,6 +45,8 @@ function MainDiary() {
   return (
     <MainLayout>
       <DefaultLayout>
+        <Calendar onChange={onChange} value={value} />
+        <div>{moment(value).format("YYYY년 MM월 DD일")}</div>
         <div className="diary-box">
           <textarea
             type="text"

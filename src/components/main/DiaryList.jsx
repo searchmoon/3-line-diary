@@ -17,6 +17,9 @@ const DiaryList = ({ list }) => {
       doneEditList({
         value: doneEditText,
         id: list.id,
+        date: `${new Date().getFullYear()}년 ${
+          new Date().getMonth() + 1
+        }월 ${new Date().getDay()}일 ${new Date().getHours()}시 ${new Date().getMinutes()}분`,
       })
     );
     setIsEditing(!isEditing);
@@ -26,6 +29,7 @@ const DiaryList = ({ list }) => {
       deleteList({
         value: list.value,
         id: list.id,
+        date: list.date,
       })
     );
   };
@@ -45,6 +49,7 @@ const DiaryList = ({ list }) => {
               ></textarea>
               <br />
               <div className="btn-box">
+                <span>{list.date}</span>
                 <button onClick={() => handleDoneEdit(list)}>수정완료</button>
                 <button onClick={() => handleDeleteList(list)}>삭제</button>
               </div>
@@ -56,6 +61,7 @@ const DiaryList = ({ list }) => {
               {doneEditText}
               <br />
               <div className="btn-box">
+                <span>{list.date}</span>
                 <button onClick={handleEditText}>수정</button>
                 <button onClick={() => handleDeleteList(list)}>삭제</button>
               </div>
