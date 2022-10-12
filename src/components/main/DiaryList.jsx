@@ -2,8 +2,9 @@ import React, { useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { doneEditList, deleteList } from "../../features/diarySlice";
+import moment from "moment";
 
-const DiaryList = ({ list }) => {
+const DiaryList = ({ list, value }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [doneEditText, setDoneEditText] = useState(list.value);
 
@@ -62,6 +63,8 @@ const DiaryList = ({ list }) => {
               <br />
               <div className="btn-box">
                 <span>{list.date}</span>
+                {console.log(list.date)}
+                {/* <div>{moment(value).format("YYYY년 MM월 DD일 hh시 mm분")}</div> */}
                 <button onClick={handleEditText}>수정</button>
                 <button onClick={() => handleDeleteList(list)}>삭제</button>
               </div>

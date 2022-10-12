@@ -32,8 +32,8 @@ function MainDiary() {
         id: new Date().getTime(),
         date: `${new Date().getFullYear()}년 ${
           new Date().getMonth() + 1
-        }월 ${new Date().getDay()}일 ${new Date().getHours()}시 ${new Date().getMinutes()}분`,
-        // isEdit: false,
+        }월 ${new Date().getDate()}일 ${new Date().getHours()}시 ${new Date().getMinutes()}분`,
+        isDone: !isDone,
       })
     );
     console.log("왜 안돼?");
@@ -45,8 +45,13 @@ function MainDiary() {
   return (
     <MainLayout>
       <DefaultLayout>
-        <Calendar onChange={onChange} value={value} />
-        <div>{moment(value).format("YYYY년 MM월 DD일")}</div>
+        <Calendar
+          onChange={onChange}
+          value={value}
+          formatDay={(locale, date) => moment(date).format("DD")}
+        />
+        {console.log("날짜", moment(value))}
+        <div>{moment(value).format("YYYY년 MM월 DD일 hh시 mm분")}</div>
         <div className="diary-box">
           <textarea
             type="text"
@@ -61,21 +66,22 @@ function MainDiary() {
             </button>
           )}
         </div>
-        {/* <Link
+        <Link
           to={"/diaryDetail"}
           style={{ textDecoration: "none", color: "white" }}
-        > */}
-        <Ul>
-          {lists.map((list) => (
-            <DiaryList
-              list={list}
-              key={list.id}
-              // diaryList={diaryList}
-              // setDiaryList={setDiaryList}
-            />
-          ))}
-        </Ul>
-        {/* </Link> */}
+        >
+          <Ul>
+            {lists.map((list) => (
+              <DiaryList
+                list={list}
+                key={list.id}
+                value={value}
+                // diaryList={diaryList}
+                // setDiaryList={setDiaryList}
+              />
+            ))}
+          </Ul>
+        </Link>
       </DefaultLayout>
     </MainLayout>
   );
