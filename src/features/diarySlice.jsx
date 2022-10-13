@@ -1,7 +1,8 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 
 const initialState = {
   lists: [],
+  item: undefined,
 };
 
 export const diarySlice = createSlice({
@@ -22,9 +23,26 @@ export const diarySlice = createSlice({
         action.payload,
       ].sort((a, b) => a.id - b.id);
     },
+    setStorageList: (state, action) => {
+      state.lists = action.payload;
+    },
+    getDiaryItem: (state, action) => {
+      var diaryList = current(state.lists);
+      state.item = diaryList.filter((item) => {
+        debugger;
+        return item.id === parseInt(action.payload);
+      });
+      console.log(action.payload);
+    },
   },
 });
 
-export const { addDiaryList, deleteList, doneEditList } = diarySlice.actions;
+export const {
+  addDiaryList,
+  deleteList,
+  doneEditList,
+  setStorageList,
+  getDiaryItem,
+} = diarySlice.actions;
 
 export default diarySlice.reducer;
