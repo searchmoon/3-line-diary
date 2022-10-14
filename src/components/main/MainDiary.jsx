@@ -1,22 +1,39 @@
-import React, { useCallback, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useCallback, useState, useEffect } from "react";
 import { DefaultLayout } from "../layout/layout";
 import styled from "styled-components";
 import { respSize } from "../common/common";
-import DiaryList from "./DiaryList";
 import { useDispatch, useSelector } from "react-redux";
-import { addDiaryList } from "../../features/diarySlice";
+import { addDiaryList, setStorageList } from "../../features/diarySlice";
 import { Calendar } from "react-calendar";
 import "./calendar.css";
 import moment from "moment";
+import DiaryItem from "./DiaryItem";
 
 function MainDiary() {
-  const [textValue, setTextValue] = useState("");
-  // const [diaryList, setDiaryList] = useState([]);
-  const [value, onChange] = useState(new Date());
-
   const dispatch = useDispatch();
   const lists = useSelector((state) => state.diary.lists);
+
+  const [textValue, setTextValue] = useState("");
+  const [value, onChange] = useState(new Date());
+
+  const jsonLocalStorage = {
+    setItem: (key, value) => {
+      localStorage.setItem(key, JSON.stringify(value));
+    },
+    getItem: (key) => {
+      return JSON.parse(localStorage.getItem(key));
+    },
+  };
+  useEffect(() => {
+    if (jsonLocalStorage.getItem("diaryList")) {
+      dispatch(setStorageList(jsonLocalStorage.getItem("diaryList")));
+    }
+    //if(jsonLocalStorage.getItem('diaryList'))의 값이 있을때만 불러오기!
+  }, []);
+
+  useEffect(() => {
+    jsonLocalStorage.setItem("diaryList", lists);
+  }, [lists]);
 
   const handleTextChange = (e) => {
     setTextValue(e.target.value);
@@ -30,10 +47,8 @@ function MainDiary() {
       addDiaryList({
         value: textValue,
         id: new Date().getTime(),
-        date: `${new Date().getFullYear()}년 ${
-          new Date().getMonth() + 1
-        }월 ${new Date().getDate()}일 ${new Date().getHours()}시 ${new Date().getMinutes()}분`,
-        isDone: !isDone,
+        date: moment(value).format("YYYY/ MM/ DD"),
+        dateformat: moment(value).format("YYMMDD"),
       })
     );
     console.log("왜 안돼?");
@@ -49,9 +64,15 @@ function MainDiary() {
           onChange={onChange}
           value={value}
           formatDay={(locale, date) => moment(date).format("DD")}
+          calendarType="US"
+          locale="en-US"
         />
+
         {console.log("날짜", moment(value))}
-        <div>{moment(value).format("YYYY년 MM월 DD일 hh시 mm분")}</div>
+        <div>
+          {moment(value).format("YYYY-MM-DD")}
+          {" 's Diary"}
+        </div>
         <div className="diary-box">
           <textarea
             type="text"
@@ -66,32 +87,25 @@ function MainDiary() {
             </button>
           )}
         </div>
-        <Link
-          to={"/diaryDetail"}
-          style={{ textDecoration: "none", color: "white" }}
-        >
-          <Ul>
-            {lists.map((list) => (
-              <DiaryList
-                list={list}
-                key={list.id}
-                value={value}
-                // diaryList={diaryList}
-                // setDiaryList={setDiaryList}
-              />
-            ))}
-          </Ul>
-        </Link>
+        <Ul>
+          {lists.map((list) => (
+            <DiaryItem list={list} key={list.id} value={value} />
+          ))}
+        </Ul>
       </DefaultLayout>
     </MainLayout>
   );
 }
 
 const MainLayout = styled.div`
+dia  
+margin: 0 auto;
+
   ${DefaultLayout} {
     display: flex;
     flex-direction: column;
     background-color: lightsalmon;
+    align-items: center;
   }
   .diary-box {
     margin: 0 auto;
