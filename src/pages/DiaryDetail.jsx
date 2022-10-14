@@ -1,15 +1,20 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import Header from "../components/Header";
 import { getDiaryItem } from "../features/diarySlice";
 
 function DiaryDetail() {
   const { id } = useParams();
+  const location = useLocation();
   const dispatch = useDispatch();
 
+  const diaryId = location.state.id;
+  const value = location.state.value;
+  const date = location.state.date;
+
   useEffect(() => {
-    console.log(id);
+    console.log("params", id);
     dispatch(getDiaryItem(id));
   }, []);
 
@@ -20,6 +25,9 @@ function DiaryDetail() {
     <>
       <Header />
       다이어리 상세
+      <p>{diaryId}</p>
+      <p>{value}</p>
+      <p>{date}</p>
     </>
   );
 }

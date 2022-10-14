@@ -2,7 +2,7 @@ import { createSlice, current } from "@reduxjs/toolkit";
 
 const initialState = {
   lists: [],
-  item: undefined,
+  item: "",
 };
 
 export const diarySlice = createSlice({
@@ -11,7 +11,7 @@ export const diarySlice = createSlice({
   reducers: {
     addDiaryList: (state, action) => {
       state.lists = [...state.lists, action.payload].sort(
-        (a, b) => a.date - b.date
+        (a, b) => b.dateformat - a.dateformat
       );
     },
     deleteList: (state, action) => {
@@ -21,18 +21,16 @@ export const diarySlice = createSlice({
       state.lists = [
         ...state.lists.filter((item) => item.id !== action.payload.id),
         action.payload,
-      ].sort((a, b) => a.id - b.id);
+      ].sort((a, b) => b.dateformat - a.dateformat);
     },
     setStorageList: (state, action) => {
       state.lists = action.payload;
     },
     getDiaryItem: (state, action) => {
-      var diaryList = current(state.lists);
-      state.item = diaryList.filter((item) => {
-        debugger;
-        return item.id === parseInt(action.payload);
-      });
-      console.log(action.payload);
+      // let diaryList = current(state.lists);
+      state.item = state.lists.filter(
+        (item) => item.id === parseInt(action.payload)
+      );
     },
   },
 });
