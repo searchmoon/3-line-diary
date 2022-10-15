@@ -1,43 +1,10 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
 import styled from "styled-components";
-import { doneEditList, deleteList } from "../../features/diarySlice";
-import moment from "moment";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const DiaryItem = ({ list, value }) => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [doneEditText, setDoneEditText] = useState(list.value);
+const DiaryItem = ({ list }) => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
-  const handleEditText = () => {
-    setIsEditing(!isEditing);
-  };
-  const handleDoneEdit = (list) => {
-    dispatch(
-      doneEditList({
-        value: doneEditText,
-        id: list.id,
-        date: `${new Date().getFullYear()}년 ${
-          new Date().getMonth() + 1
-        }월 ${new Date().getDay()}일 ${new Date().getHours()}시 ${new Date().getMinutes()}분`,
-      })
-    );
-    setIsEditing(!isEditing);
-  };
-  const handleDeleteList = (list) => {
-    dispatch(
-      deleteList({
-        value: list.value,
-        id: list.id,
-        date: list.date,
-      })
-    );
-  };
-  const handleTextChange = (e) => {
-    setDoneEditText(e.target.value);
-  };
   const handleGoDetail = (list) => {
     navigate(`/diaryDetail/${list.id}`, {
       state: {
@@ -51,37 +18,8 @@ const DiaryItem = ({ list, value }) => {
   return (
     <Layout onClick={() => handleGoDetail(list)}>
       <Li>
-        {isEditing ? (
-          <>
-            <div className="wrap-diarylist">
-              <textarea
-                onChange={handleTextChange}
-                value={doneEditText}
-                height={"auto"}
-              ></textarea>
-              <br />
-              <div className="btn-box">
-                <span>{list.date}</span>
-                <button onClick={() => handleDoneEdit(list)}>수정완료</button>
-                <button onClick={() => handleDeleteList(list)}>삭제</button>
-              </div>
-            </div>
-          </>
-        ) : (
-          <>
-            <div className="wrap-diarylist">
-              {doneEditText}
-              <br />
-              <div className="btn-box">
-                <span>{list.date}</span>
-                {console.log(list.date)}
-                {/* <div>{moment(value).format("YYYY년 MM월 DD일 hh시 mm분")}</div> */}
-                <button onClick={handleEditText}>수정</button>
-                <button onClick={() => handleDeleteList(list)}>삭제</button>
-              </div>
-            </div>
-          </>
-        )}
+        <p>{list.value}</p>
+        <p>{list.date}</p>
       </Li>
     </Layout>
   );

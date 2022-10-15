@@ -38,7 +38,6 @@ function MainDiary() {
   const handleTextChange = (e) => {
     setTextValue(e.target.value);
     console.log("이거", e.target.value);
-    // console.log("리스트", diaryList);
   };
   console.log(textValue);
 
@@ -53,7 +52,6 @@ function MainDiary() {
     );
     console.log("왜 안돼?");
     console.log(textValue);
-    // console.log(diaryList);
     setTextValue("");
   };
 
