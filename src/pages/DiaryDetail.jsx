@@ -66,7 +66,6 @@ function DiaryDetail() {
     );
     console.log(item);
     alert("삭제 완료");
-    // navigate("/");
   };
   const handleTextChange = (e) => {
     setDoneEditText(e.target.value);
@@ -78,7 +77,7 @@ function DiaryDetail() {
 
   return (
     <>
-      <Header />
+      <Header leftIcon={"FaChevronLeft"} />
       다이어리 상세페이지
       {isEditing ? (
         <>

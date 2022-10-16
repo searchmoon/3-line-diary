@@ -1,4 +1,4 @@
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   lists: [],
@@ -16,6 +16,8 @@ export const diarySlice = createSlice({
     },
     deleteList: (state, action) => {
       state.lists = state.lists.filter((item) => item.id !== action.payload.id);
+      console.log(state.item);
+      console.log(state.lists);
     },
     doneEditList: (state, action) => {
       state.lists = [
@@ -27,7 +29,6 @@ export const diarySlice = createSlice({
       state.lists = action.payload;
     },
     getDiaryItem: (state, action) => {
-      // let diaryList = current(state.lists);
       state.item = state.lists.filter(
         (item) => item.id === parseInt(action.payload)
       );

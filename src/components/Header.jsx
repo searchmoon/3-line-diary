@@ -2,19 +2,25 @@ import React from "react";
 import { DefaultLayout } from "./layout/layout";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { FaChevronLeft, FaBars } from "react-icons/fa";
+import { IoSettingsOutline } from "react-icons/io5";
 
-function Header() {
+function Header({ leftIcon }) {
   return (
     <HeaderLayout>
       <DefaultLayout>
-        <Link to="/calendar">
-          <img src="/icon/hambur_gray.svg" alt="hamburger" />
-        </Link>
+        {leftIcon ? (
+          <Link to="/">
+            <FaChevronLeft />
+          </Link>
+        ) : (
+          <Link to="/calendar"></Link>
+        )}
         <div className="title">
           <Link to="/">3Line Diary</Link>
         </div>
         <Link to="/">
-          <img src="/icon/hambur_gray.svg" alt="hamburger" />
+          <IoSettingsOutline />
         </Link>
         {/* <ul className="navbar">
           <li>How to use</li>
