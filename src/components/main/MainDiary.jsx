@@ -5,7 +5,7 @@ import { respSize } from "../common/common";
 import { useDispatch, useSelector } from "react-redux";
 import { addDiaryList, setStorageList } from "../../features/diarySlice";
 import { Calendar } from "react-calendar";
-import "./calendar.css";
+import "../../styles/calendar.css";
 import moment from "moment";
 import DiaryItem from "./DiaryItem";
 

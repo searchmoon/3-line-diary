@@ -7,7 +7,7 @@ export const DefaultLayout = styled.div`
   margin: 0 auto;
   width: 100%;
 
-  @media (max-width: ${(props) => props.maxWidth || 1280}px) {
+  @media (max-width: ${(props) => props.maxWidth || 1340 + 60}px) {
     padding: 0 32px;
   }
   @media (max-width: ${respSize.mobile}px) {

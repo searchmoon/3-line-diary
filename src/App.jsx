@@ -1,5 +1,5 @@
 import Home from "./pages/Home";
-import Calendar from "./pages/Calendar";
+import CalendarPage from "./pages/CalendarPage";
 import DiaryDetail from "./pages/DiaryDetail";
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
@@ -12,7 +12,7 @@ function App() {
       <GlobalStyles />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/calendar" element={<Calendar />} />
+        <Route path="/calendar" element={<CalendarPage />} />
         <Route path="/diaryDetail/:id" element={<DiaryDetail />} />
       </Routes>
     </BrowserRouter>

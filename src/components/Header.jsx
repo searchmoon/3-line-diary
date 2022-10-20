@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { FaChevronLeft, FaBars, FaInstagram } from "react-icons/fa";
 import { IoSettingsOutline } from "react-icons/io5";
 import { MdLanguage } from "react-icons/md";
-import { BiBell, BiMoon } from "react-icons/bi";
+import { BiBell, BiMoon, BiCalendar } from "react-icons/bi";
 
 function Header({ leftIcon }) {
   const handleGoSetting = useCallback(() => {
@@ -18,16 +18,18 @@ function Header({ leftIcon }) {
       <DefaultLayout>
         {leftIcon ? (
           <Link to="/">
-            <FaChevronLeft />
+            <FaChevronLeft size={20} />
           </Link>
         ) : (
-          <Link to="/calendar"></Link>
+          <Link to="/calendar">
+            <BiCalendar size={22} />
+          </Link>
         )}
         <div className="title">
           <Link to="/">3Line Diary</Link>
         </div>
         {/* <Link to="/"> */}
-        <IoSettingsOutline onClick={handleGoSetting} />
+        <IoSettingsOutline size={20} onClick={handleGoSetting} />
         <div className="setting-modal">
           <li>
             <MdLanguage />
