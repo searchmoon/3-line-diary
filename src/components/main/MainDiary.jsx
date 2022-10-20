@@ -96,22 +96,22 @@ function MainDiary() {
 }
 
 const MainLayout = styled.div`
-dia  
-margin: 0 auto;
-
+  margin: 0 auto;
+  color: #444;
   ${DefaultLayout} {
     display: flex;
     flex-direction: column;
-    background-color: lightsalmon;
+    background-color: #f7efeb;
     align-items: center;
   }
   .diary-box {
     margin: 0 auto;
-    background-color: skyblue;
+    // background-color: skyblue;
     width: 100%;
     textarea {
       border-radius: 5px;
-      border: 1px solid #aaa;
+      border: 1px solid #ddd;
+      // border: none;
       max-width: 400px;
       font-size: 16px;
       width: 100%;
@@ -126,10 +126,11 @@ margin: 0 auto;
       }
     }
     .done-btn {
-      color: white;
+      color: #40684a;
       font-size: 16px;
-      background-color: burlywood;
-      border: none;
+      font-weight: 700;
+      background-color: #dbe9de;
+      border: 1px solid #ccc;
       border-radius: 5px;
       padding: 7px 20px;
       content-visibility: auto;

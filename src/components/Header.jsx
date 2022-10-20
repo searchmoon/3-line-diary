@@ -6,6 +6,7 @@ import { FaChevronLeft, FaBars, FaInstagram } from "react-icons/fa";
 import { IoSettingsOutline } from "react-icons/io5";
 import { MdLanguage } from "react-icons/md";
 import { BiBell, BiMoon, BiCalendar } from "react-icons/bi";
+import { HiOutlineChevronLeft } from "react-icons/hi";
 
 function Header({ leftIcon }) {
   const handleGoSetting = useCallback(() => {
@@ -18,7 +19,7 @@ function Header({ leftIcon }) {
       <DefaultLayout>
         {leftIcon ? (
           <Link to="/">
-            <FaChevronLeft size={20} />
+            <HiOutlineChevronLeft size={20} />
           </Link>
         ) : (
           <Link to="/calendar">
@@ -61,15 +62,20 @@ function Header({ leftIcon }) {
 }
 const HeaderLayout = styled.div`
   width: 100%;
-  background-color: green;
+  background-color: #fff;
+  color: #444;
   margin: 0 auto;
   ${DefaultLayout} {
-    height: 45px;
+    height: 60px;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: pink;
+    background-color: #fff;
+  }
+  .title {
+    font-size: 20px;
+    font-weight: 700;
   }
   .setting-modal {
     display: none;
