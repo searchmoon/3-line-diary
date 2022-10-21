@@ -15,6 +15,8 @@ function Header({ leftIcon }) {
     // settingBtn.classList.toggle("on");
     setOpenModal(!openModal);
     console.log(openModal);
+    document.body.style.overflow = "hidden";
+    //모달창 스크롤 방지
   }, [openModal]);
 
   return (
@@ -32,29 +34,43 @@ function Header({ leftIcon }) {
         <div className="title">
           <Link to="/">3LINE DIARY</Link>
         </div>
-        {openModal ? (
+        <IoSettingsOutline
+          size={20}
+          onClick={handleGoSetting}
+          style={{ cursor: "pointer" }}
+        />
+        {/* {openModal ? (
           <BiX size={24} onClick={handleGoSetting} />
         ) : (
           <IoSettingsOutline size={20} onClick={handleGoSetting} />
-        )}
+        )} */}
         {openModal && (
-          <div className="setting-modal">
-            <li>
-              <MdLanguage />
-              <span>Language</span>
-            </li>
-            <li>
-              <BiBell />
-              <span>Notifications</span>
-            </li>
-            <li>
-              <BiMoon />
-              <span>Dark Mode</span>
-            </li>
-            <li>
-              <FaInstagram />
-              <span>Instagram</span>
-            </li>
+          <div className="modal-wrap">
+            <ul className="modal-content">
+              <div className="close-box">
+                <BiX
+                  size={24}
+                  onClick={handleGoSetting}
+                  style={{ cursor: "pointer" }}
+                />
+              </div>
+              <li>
+                <MdLanguage />
+                <span>Language</span>
+              </li>
+              <li>
+                <BiBell />
+                <span>Notifications</span>
+              </li>
+              <li>
+                <BiMoon />
+                <span>Dark Mode</span>
+              </li>
+              <li>
+                <FaInstagram />
+                <span>Instagram</span>
+              </li>
+            </ul>
           </div>
         )}
       </DefaultLayout>
@@ -78,20 +94,41 @@ const HeaderLayout = styled.div`
     font-size: 20px;
     font-weight: 700;
   }
-  .setting-modal {
+  .modal-wrap {
     position: absolute;
-    top: 60px;
-    right: 0;
-    height: calc(100vh - 60px);
-    background-color: white;
-    width: 300px;
-    padding: 40px 30px;
-    li {
-      margin-bottom: 25px;
-      display: flex;
-      align-items: center;
-      span {
-        margin-left: 10px;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    .modal-content {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100vh;
+      background-color: white;
+      max-width: 260px;
+      width: 70vw;
+      padding: 18px 15px;
+      z-index: 10;
+      .close-box {
+        text-align: right;
+        margin-bottom: 20px;
+      }
+      li {
+        padding: 10px 7px;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        border-radius: 10px;
+        :hover {
+          background-color: #aaa;
+          color: #fff;
+        }
+        span {
+          margin-left: 10px;
+        }
       }
     }
   }
