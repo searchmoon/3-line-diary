@@ -8,7 +8,7 @@ function Home() {
     <>
       <Header />
       <MainDiary />
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

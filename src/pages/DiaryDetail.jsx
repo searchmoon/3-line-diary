@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
+import styled from "styled-components";
 import Header from "../components/Header";
 import {
   doneEditList,
@@ -76,41 +77,50 @@ function DiaryDetail() {
   }, []);
 
   return (
-    <>
+    <DiaryDetailStyle>
       <Header leftIcon={"FaChevronLeft"} />
-      다이어리 상세페이지
-      {isEditing ? (
-        <>
-          <div className="wrap-diarylist">
-            <textarea
-              onChange={handleTextChange}
-              value={doneEditText}
-              height={"auto"}
-            ></textarea>
-            <br />
-            <div className="btn-box">
-              <span>{item.date}</span>
-              <button onClick={() => handleDoneEdit(item)}>수정완료</button>
-              <button onClick={() => handleDeleteList(item)}>삭제</button>
+      <div className="wrap">
+        {isEditing ? (
+          <>
+            <div className="wrap-diarylist">
+              <textarea
+                onChange={handleTextChange}
+                value={doneEditText}
+                height={"auto"}
+              ></textarea>
+              <br />
+              <div className="btn-box">
+                <span>{item.date}</span>
+                <button onClick={() => handleDoneEdit(item)}>수정완료</button>
+                <button onClick={() => handleDeleteList(item)}>삭제</button>
+              </div>
             </div>
-          </div>
-        </>
-      ) : (
-        <>
-          <div className="wrap-diarylist">
-            {doneEditText}
-            <br />
-            <div className="btn-box">
-              <span>{item.date}</span>
-              {console.log(item.date)}
-              <button onClick={handleEditText}>수정</button>
-              <button onClick={() => handleDeleteList(item)}>삭제</button>
+          </>
+        ) : (
+          <>
+            <div className="wrap-diarylist">
+              {doneEditText}
+              <br />
+              <div className="btn-box">
+                <span>{item.date}</span>
+                {console.log(item.date)}
+                <button onClick={handleEditText}>수정</button>
+                <button onClick={() => handleDeleteList(item)}>삭제</button>
+              </div>
             </div>
-          </div>
-        </>
-      )}
-    </>
+          </>
+        )}
+      </div>
+    </DiaryDetailStyle>
   );
 }
+
+const DiaryDetailStyle = styled.div`
+  background-color: #f7efeb;
+  .wrap {
+    height: 100%;
+    min-height: calc(100vh - 60px);
+  }
+`;
 
 export default DiaryDetail;

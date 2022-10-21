@@ -1,18 +1,21 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import { DefaultLayout } from "./layout/layout";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { FaChevronLeft, FaBars, FaInstagram } from "react-icons/fa";
 import { IoSettingsOutline } from "react-icons/io5";
 import { MdLanguage } from "react-icons/md";
-import { BiBell, BiMoon, BiCalendar } from "react-icons/bi";
+import { BiBell, BiMoon, BiCalendar, BiX } from "react-icons/bi";
 import { HiOutlineChevronLeft } from "react-icons/hi";
 
 function Header({ leftIcon }) {
+  const [openModal, setOpenModal] = useState(false);
   const handleGoSetting = useCallback(() => {
-    const settingBtn = document.querySelector(".setting-modal");
-    settingBtn.classList.toggle("on");
-  }, []);
+    // const settingBtn = document.querySelector(".setting-modal");
+    // settingBtn.classList.toggle("on");
+    setOpenModal(!openModal);
+    console.log(openModal);
+  }, [openModal]);
 
   return (
     <HeaderLayout>
@@ -27,35 +30,33 @@ function Header({ leftIcon }) {
           </Link>
         )}
         <div className="title">
-          <Link to="/">3Line Diary</Link>
+          <Link to="/">3LINE DIARY</Link>
         </div>
-        {/* <Link to="/"> */}
-        <IoSettingsOutline size={20} onClick={handleGoSetting} />
-        <div className="setting-modal">
-          <li>
-            <MdLanguage />
-            <span>Language</span>
-          </li>
-          <li>
-            <BiBell />
-            <span>Notifications</span>
-          </li>
-          <li>
-            <BiMoon />
-            <span>Dark Mode</span>
-          </li>
-          <li>
-            <FaInstagram />
-            <span>Instagram</span>
-          </li>
-        </div>
-        {/* </Link> */}
-        {/* <ul className="navbar">
-          <li>How to use</li>
-          <li>My diary</li>
-          <li>Login</li>
-          <li>Contact us</li>
-        </ul> */}
+        {openModal ? (
+          <BiX size={24} onClick={handleGoSetting} />
+        ) : (
+          <IoSettingsOutline size={20} onClick={handleGoSetting} />
+        )}
+        {openModal && (
+          <div className="setting-modal">
+            <li>
+              <MdLanguage />
+              <span>Language</span>
+            </li>
+            <li>
+              <BiBell />
+              <span>Notifications</span>
+            </li>
+            <li>
+              <BiMoon />
+              <span>Dark Mode</span>
+            </li>
+            <li>
+              <FaInstagram />
+              <span>Instagram</span>
+            </li>
+          </div>
+        )}
       </DefaultLayout>
     </HeaderLayout>
   );
@@ -78,17 +79,13 @@ const HeaderLayout = styled.div`
     font-weight: 700;
   }
   .setting-modal {
-    display: none;
     position: absolute;
-    top: 45px;
+    top: 60px;
     right: 0;
-    height: 100vh;
+    height: calc(100vh - 60px);
     background-color: white;
     width: 300px;
     padding: 40px 30px;
-    &.on {
-      display: block;
-    }
     li {
       margin-bottom: 25px;
       display: flex;

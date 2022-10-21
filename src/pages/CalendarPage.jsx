@@ -22,6 +22,7 @@ function CalendarPage() {
   );
 }
 const CalendarStyle = styled.div`
+  background-color: #f7efeb;
   color: #444;
 `;
 export default CalendarPage;
