@@ -19,6 +19,11 @@ function Header({ leftIcon }) {
     //모달창 스크롤 방지
   }, [openModal]);
 
+  const handleClickClose = useCallback(() => {
+    setOpenModal(!openModal);
+    document.body.style.overflow = "unset";
+  }, [openModal]);
+
   return (
     <HeaderLayout>
       <DefaultLayout>
@@ -50,7 +55,7 @@ function Header({ leftIcon }) {
               <div className="close-box">
                 <BiX
                   size={24}
-                  onClick={handleGoSetting}
+                  onClick={handleClickClose}
                   style={{ cursor: "pointer" }}
                 />
               </div>
