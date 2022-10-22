@@ -79,37 +79,26 @@ function DiaryDetail() {
   return (
     <DiaryDetailStyle>
       <Header leftIcon={"FaChevronLeft"} />
-      <div className="wrap">
+      <div className="wrap-diarylist">
         {isEditing ? (
-          <>
-            <div className="wrap-diarylist">
-              <textarea
-                onChange={handleTextChange}
-                value={doneEditText}
-                height={"auto"}
-              ></textarea>
-              <br />
-              <div className="btn-box">
-                <span>{item.date}</span>
-                <button onClick={() => handleDoneEdit(item)}>수정완료</button>
-                <button onClick={() => handleDeleteList(item)}>삭제</button>
-              </div>
-            </div>
-          </>
+          <textarea
+            onChange={handleTextChange}
+            value={doneEditText}
+            height={"auto"}
+          ></textarea>
         ) : (
-          <>
-            <div className="wrap-diarylist">
-              {doneEditText}
-              <br />
-              <div className="btn-box">
-                <span>{item.date}</span>
-                {console.log(item.date)}
-                <button onClick={handleEditText}>수정</button>
-                <button onClick={() => handleDeleteList(item)}>삭제</button>
-              </div>
-            </div>
-          </>
+          <pre>{doneEditText}</pre>
         )}
+        <br />
+        <div className="btn-box">
+          <span>{item.date}</span>
+          {isEditing ? (
+            <button onClick={() => handleDoneEdit(item)}>수정완료</button>
+          ) : (
+            <button onClick={handleEditText}>수정</button>
+          )}
+          <button onClick={() => handleDeleteList(item)}>삭제</button>
+        </div>
       </div>
     </DiaryDetailStyle>
   );
@@ -117,7 +106,7 @@ function DiaryDetail() {
 
 const DiaryDetailStyle = styled.div`
   background-color: #f7efeb;
-  .wrap {
+  .wrap-diarylist {
     height: 100%;
     min-height: calc(100vh - 60px);
   }

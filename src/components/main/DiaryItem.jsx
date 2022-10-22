@@ -18,7 +18,7 @@ const DiaryItem = ({ list }) => {
   return (
     <Layout onClick={() => handleGoDetail(list)}>
       <Li>
-        <p>{list.value}</p>
+        <pre>{list.value}</pre>
         <p>{list.date}</p>
       </Li>
     </Layout>
