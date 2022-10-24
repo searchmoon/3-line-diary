@@ -8,14 +8,29 @@ import { Calendar } from "react-calendar";
 import "../../styles/calendar.css";
 import moment from "moment";
 import DiaryItem from "./DiaryItem";
+import Pagination from "../Pagination";
 
 function MainDiary() {
   const dispatch = useDispatch();
   const lists = useSelector((state) => state.diary.lists);
+  console.log("lists", lists);
+
+  const [data, setData] = useState([...lists]);
+  console.log("data", data);
+  const [currentPage, setCurrentPage] = useState(2);
+  const [postsPerPage, setPostsPerPage] = useState(6);
+
+  const lastPostIndex = currentPage * postsPerPage;
+  // ex) 20 = 2 * 10
+  // ex) 12 = 2 * 6
+  const firstPostIndex = lastPostIndex - postsPerPage;
+  // ex) 10 = 20 - 10
+  // ex) 6 = 12 - 6
+  const currentPosts = data.slice(firstPostIndex, lastPostIndex);
+  console.log("엥", currentPosts);
 
   const [textValue, setTextValue] = useState("");
   const [value, onChange] = useState(new Date());
-
   const jsonLocalStorage = {
     setItem: (key, value) => {
       localStorage.setItem(key, JSON.stringify(value));
@@ -86,10 +101,16 @@ function MainDiary() {
           )}
         </div>
         <Ul>
-          {lists.map((list) => (
+          {currentPosts.map((list) => (
             <DiaryItem list={list} key={list.id} value={value} />
           ))}
         </Ul>
+        {console.log("currentPosts", currentPosts)}
+        <Pagination
+          totalPosts={data.length}
+          postsPerPage={postsPerPage}
+          setCurrentPage={setCurrentPage}
+        />
       </DefaultLayout>
     </MainLayout>
   );
