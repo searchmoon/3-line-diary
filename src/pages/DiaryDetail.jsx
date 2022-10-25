@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -44,10 +44,10 @@ function DiaryDetail() {
   // const diaryId = location.state.id;
   // const value = location.state.value;
   // const date = location.state.date;
-  const handleEditText = () => {
+  const handleEditText = useCallback(() => {
     setIsEditing(!isEditing);
-  };
-  const handleDoneEdit = (item) => {
+  }, []);
+  const handleDoneEdit = useCallback((item) => {
     dispatch(
       doneEditList({
         value: doneEditText,
@@ -56,8 +56,8 @@ function DiaryDetail() {
       })
     );
     setIsEditing(!isEditing);
-  };
-  const handleDeleteList = (item) => {
+  }, [dispatch(doneEditList)]);
+  const handleDeleteList = useCallback((item) => {
     dispatch(
       deleteList({
         value: item.value,
@@ -67,10 +67,11 @@ function DiaryDetail() {
     );
     console.log(item);
     alert("삭제 완료");
-  };
-  const handleTextChange = (e) => {
+  }, [dispatch(deleteList)]);
+  const handleTextChange = useCallback((e) => {
     setDoneEditText(e.target.value);
-  };
+  }, [setDoneEditText]);
+
   useEffect(() => {
     console.log("params", id);
     dispatch(getDiaryItem(id));

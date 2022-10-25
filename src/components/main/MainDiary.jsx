@@ -15,9 +15,7 @@ function MainDiary() {
   const lists = useSelector((state) => state.diary.lists);
   console.log("lists", lists);
 
-  const [data, setData] = useState([...lists]);
-  console.log("data", data);
-  const [currentPage, setCurrentPage] = useState(2);
+  const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(6);
 
   const lastPostIndex = currentPage * postsPerPage;
@@ -26,8 +24,8 @@ function MainDiary() {
   const firstPostIndex = lastPostIndex - postsPerPage;
   // ex) 10 = 20 - 10
   // ex) 6 = 12 - 6
-  const currentPosts = data.slice(firstPostIndex, lastPostIndex);
-  console.log("엥", currentPosts);
+  const currentPosts = lists.slice(firstPostIndex, lastPostIndex);
+  console.log("currentPosts", currentPosts);
 
   const [textValue, setTextValue] = useState("");
   const [value, onChange] = useState(new Date());
@@ -50,13 +48,11 @@ function MainDiary() {
     jsonLocalStorage.setItem("diaryList", lists);
   }, [lists]);
 
-  const handleTextChange = (e) => {
+  const handleTextChange = useCallback((e) => {
     setTextValue(e.target.value);
-    console.log("이거", e.target.value);
-  };
-  console.log(textValue);
+  },[setTextValue]);
 
-  const handleDoneClick = () => {
+  const handleDoneClick = useCallback(() => {
     dispatch(
       addDiaryList({
         value: textValue,
@@ -65,10 +61,8 @@ function MainDiary() {
         dateformat: moment(value).format("YYMMDD"),
       })
     );
-    console.log("왜 안돼?");
-    console.log(textValue);
     setTextValue("");
-  };
+  }, [dispatch(addDiaryList)]);
 
   return (
     <MainLayout>
@@ -80,9 +74,8 @@ function MainDiary() {
           calendarType="US"
           locale="en-US"
         />
-
         {console.log("날짜", moment(value))}
-        <div>
+        <div className={'selected-date'}>
           {moment(value).format("YYYY-MM-DD")}
           {" 's Diary"}
         </div>
@@ -107,7 +100,7 @@ function MainDiary() {
         </Ul>
         {console.log("currentPosts", currentPosts)}
         <Pagination
-          totalPosts={data.length}
+          totalPosts={lists.length}
           postsPerPage={postsPerPage}
           setCurrentPage={setCurrentPage}
         />
@@ -119,20 +112,23 @@ function MainDiary() {
 const MainLayout = styled.div`
   margin: 0 auto;
   color: #444;
+  line-height: 1.4;
   ${DefaultLayout} {
     display: flex;
     flex-direction: column;
     background-color: #f7efeb;
     align-items: center;
   }
+  .selected-date{
+    margin-top: 12px;
+    font-size: 20px;
+  }
   .diary-box {
     margin: 0 auto;
-    // background-color: skyblue;
     width: 100%;
     textarea {
       border-radius: 5px;
       border: 1px solid #ddd;
-      // border: none;
       max-width: 400px;
       font-size: 16px;
       width: 100%;
@@ -174,17 +170,22 @@ const MainLayout = styled.div`
   }
 `;
 const Ul = styled.ul`
-  // display: grid;
-  // grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
-  // grid-template-row: repeat(auto-fill, minmax(300px, 1fr));
-  // grid-gap: 10px;
-  display: flex;
-  flex-wrap: wrap;
-  max-width: 900px;
-  background-color: ivory;
+  max-width: 400px;
+  width: 100%;
+   //display: grid;
+  //grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  //grid-template-columns: repeat(1, 1fr);
+   //grid-template-row: repeat(auto-fill, minmax(300px, 1fr));
+   //grid-gap: 10px;
+  //display: flex;
+  //flex-wrap: wrap;
+  //max-width: 900px;
+  //background-color: ivory;
+  
   // margin: 0 auto;
-  justify-content: center;
+  //justify-content: center;
   // flex-direction: column;
+  padding: 8px;
 `;
 
 export default MainDiary;
