@@ -10,7 +10,7 @@ function CalendarPage() {
   return (
     <CalendarStyle>
       <Header />
-      <div>날짜별로 보기</div>
+      <h3>View by date</h3>
       <Calendar
         onChange={onChange}
         value={value}
@@ -24,5 +24,11 @@ function CalendarPage() {
 const CalendarStyle = styled.div`
   background-color: #f7efeb;
   color: #444;
+  min-height: calc(100vh - 60px);
+  h3 {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 20px;
+  }
 `;
 export default CalendarPage;

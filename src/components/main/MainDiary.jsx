@@ -48,16 +48,19 @@ function MainDiary() {
     jsonLocalStorage.setItem("diaryList", lists);
   }, [lists]);
 
-  const handleTextChange = useCallback((e) => {
-    setTextValue(e.target.value);
-  },[setTextValue]);
+  const handleTextChange = useCallback(
+    (e) => {
+      setTextValue(e.target.value);
+    },
+    [setTextValue]
+  );
 
   const handleDoneClick = useCallback(() => {
     dispatch(
       addDiaryList({
         value: textValue,
         id: new Date().getTime(),
-        date: moment(value).format("YYYY/ MM/ DD"),
+        date: moment(value).format("YYYY/ MM/ DD/ ddd"),
         dateformat: moment(value).format("YYMMDD"),
       })
     );
@@ -75,7 +78,7 @@ function MainDiary() {
           locale="en-US"
         />
         {console.log("날짜", moment(value))}
-        <div className={'selected-date'}>
+        <div className={"selected-date"}>
           {moment(value).format("YYYY-MM-DD")}
           {" 's Diary"}
         </div>
@@ -113,13 +116,15 @@ const MainLayout = styled.div`
   margin: 0 auto;
   color: #444;
   line-height: 1.4;
+  background-color: #f7efeb;
+  min-height: calc(100vh - 60px);
   ${DefaultLayout} {
     display: flex;
     flex-direction: column;
-    background-color: #f7efeb;
+
     align-items: center;
   }
-  .selected-date{
+  .selected-date {
     margin-top: 12px;
     font-size: 20px;
   }
@@ -172,16 +177,16 @@ const MainLayout = styled.div`
 const Ul = styled.ul`
   max-width: 400px;
   width: 100%;
-   //display: grid;
+  //display: grid;
   //grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   //grid-template-columns: repeat(1, 1fr);
-   //grid-template-row: repeat(auto-fill, minmax(300px, 1fr));
-   //grid-gap: 10px;
+  //grid-template-row: repeat(auto-fill, minmax(300px, 1fr));
+  //grid-gap: 10px;
   //display: flex;
   //flex-wrap: wrap;
   //max-width: 900px;
   //background-color: ivory;
-  
+
   // margin: 0 auto;
   //justify-content: center;
   // flex-direction: column;

@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -16,6 +16,10 @@ function DiaryDetail() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const item = location.state;
+
+  console.log("item", item);
+  console.log("location state", location.state);
+  console.log("location", location);
 
   const lists = useSelector((state) => state.diary.lists);
 
@@ -47,30 +51,39 @@ function DiaryDetail() {
   const handleEditText = useCallback(() => {
     setIsEditing(!isEditing);
   }, []);
-  const handleDoneEdit = useCallback((item) => {
-    dispatch(
-      doneEditList({
-        value: doneEditText,
-        id: item.id,
-        date: item.date,
-      })
-    );
-    setIsEditing(!isEditing);
-  }, [dispatch(doneEditList)]);
-  const handleDeleteList = useCallback((item) => {
-    dispatch(
-      deleteList({
-        value: item.value,
-        id: item.id,
-        date: item.date,
-      })
-    );
-    console.log(item);
-    alert("삭제 완료");
-  }, [dispatch(deleteList)]);
-  const handleTextChange = useCallback((e) => {
-    setDoneEditText(e.target.value);
-  }, [setDoneEditText]);
+  const handleDoneEdit = useCallback(
+    (item) => {
+      dispatch(
+        doneEditList({
+          value: doneEditText,
+          id: item.id,
+          date: item.date,
+        })
+      );
+      setIsEditing(!isEditing);
+    },
+    [dispatch(doneEditList)]
+  );
+  const handleDeleteList = useCallback(
+    (item) => {
+      dispatch(
+        deleteList({
+          value: item.value,
+          id: item.id,
+          date: item.date,
+        })
+      );
+      console.log(item);
+      alert("삭제 완료");
+    },
+    [dispatch(deleteList)]
+  );
+  const handleTextChange = useCallback(
+    (e) => {
+      setDoneEditText(e.target.value);
+    },
+    [setDoneEditText]
+  );
 
   useEffect(() => {
     console.log("params", id);
