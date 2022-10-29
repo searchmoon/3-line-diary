@@ -73,6 +73,7 @@
 }
 .react-calendar__month-view__days__day--weekend {
   color: #222;
+  background-color: red;
 }
 .react-calendar__month-view__days__day--neighboringMonth {
   color: #757575;
@@ -86,6 +87,7 @@
   max-width: 100%;
   padding: 10px 6.6667px;
   background: none;
+  color: #444;
   text-align: center;
   line-height: 16px;
 }

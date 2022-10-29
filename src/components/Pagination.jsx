@@ -28,6 +28,8 @@ const PageStyle = styled.div`
     border: none;
     cursor: pointer;
     position: relative;
+    font-weight: 500;
+    color: #444;
     &:not(:first-child):after {
       content: "";
       display: block;

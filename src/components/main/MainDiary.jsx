@@ -117,12 +117,15 @@ const MainLayout = styled.div`
   color: #444;
   line-height: 1.4;
   background-color: #f8ede2;
-  min-height: calc(100vh - 60px);
+  min-height: (100vh - 60px);
+  height: 100%;
   ${DefaultLayout} {
     display: flex;
     flex-direction: column;
-
+    // min-height: 100vh;
+    // height: 100%;
     align-items: center;
+    background-color: #f8ede2;
   }
   .selected-date {
     margin-top: 12px;

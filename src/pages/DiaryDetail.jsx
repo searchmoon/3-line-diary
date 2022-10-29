@@ -120,9 +120,9 @@ function DiaryDetail() {
 
 const DiaryDetailStyle = styled.div`
   background-color: #f7efeb;
+  height: 100%;
+  min-height: 100vh;
   .wrap-diarylist {
-    height: 100%;
-    min-height: calc(100vh - 60px);
   }
 `;
 
