@@ -116,7 +116,7 @@ const MainLayout = styled.div`
   margin: 0 auto;
   color: #444;
   line-height: 1.4;
-  background-color: #f7efeb;
+  background-color: #f8ede2;
   min-height: calc(100vh - 60px);
   ${DefaultLayout} {
     display: flex;
