@@ -112,11 +112,11 @@ function DiaryDetail() {
           <div className="btn-box">
             <span>{item.date}</span>
             {isEditing ? (
-              <button onClick={() => handleDoneEdit(item)}>수정완료</button>
+              <button onClick={() => handleDoneEdit(item)}>Done</button>
             ) : (
-              <button onClick={handleEditText}>수정</button>
+              <button onClick={handleEditText}>Edit</button>
             )}
-            <button onClick={() => handleDeleteList(item)}>삭제</button>
+            <button onClick={() => handleDeleteList(item)}>Delete</button>
           </div>
         </div>
       </DefaultLayout>
@@ -129,25 +129,35 @@ const DiaryDetailStyle = styled.div`
   height: 100%;
   min-height: 100vh;
   color: #444;
+  line-height: 1.4;
   .wrap-diarylist {
     max-width: 600px;
     width: 100%;
-    min-height: 100px;
-    // background-color: salmon;
+    // min-height: 100px;
+    min-height: 30vh;
+    height: 100%;
+    background-color: #fff;
     margin: 10px auto;
+    border: 2px dashed #666;
+    border-radius: 10px;
+    position: relative;
     .text-area {
-      min-height: 100px;
+      // min-height: 100%;
       textarea {
         border-radius: 5px;
-        border: 1px solid #ddd;
+        // border: 1px solid #ddd;
+        min-height: 200px;
+        height: 100%;
+        border: none;
         font-size: 16px;
         width: 100%;
-        line-height: 1.6;
+        // line-height: 1.4;
         color: #444;
         padding: 8px 12px;
         display: block;
         &:focus {
-          outline: 1px solid gray;
+          // outline: 1px solid gray;
+          outline: none;
         }
       }
       pre {
@@ -155,22 +165,25 @@ const DiaryDetailStyle = styled.div`
       }
     }
     .btn-box {
-      // background-color: lightsalmon;
       text-align: right;
       display: flex;
       align-items: center;
-      justify-content: right;
+      // justify-content: right;
+      position: absolute;
+      right: 5px;
+      bottom: 5px;
       span {
         margin-right: 5px;
       }
       button {
-        background-color: #fff;
+        color: #fff;
+        background-color: #bbb;
         display: inline-block;
         padding: 4px 8px;
         font-size: 16px;
         margin: 0 5px 5px 0;
         border-radius: 5px;
-        border: 1px solid #666;
+        border: 1px solid #bbb;
         &:active {
           background-color: #666;
           color: #fff;

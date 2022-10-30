@@ -10,25 +10,11 @@ import DiaryItem from "../components/main/DiaryItem";
 
 function CalendarPage() {
   const [value, onChange] = useState(new Date());
-
   const lists = useSelector((state) => state.diary.lists);
 
-  // const [viewByDate, setViewByDate] = useState();
   let selectedDate = moment(value).format("YYMMDD");
-  console.log(
-    "제발",
-    lists.filter((list) => selectedDate == list.dateformat)
-  );
   const view = lists.filter((list) => selectedDate == list.dateformat);
-  // const handleDiaryView = useCallback(() => {
-  // setViewByDate([
-  // lists.filter((list) => selectedDate == list.dateformat),
-  // ]);
-  // }, []);
   console.log("selectedDate", typeof selectedDate);
-  console.log("list.dateformat", lists[0].dateformat);
-
-  // console.log("viewByDate", viewByDate);
   console.log("lists", lists);
   console.log("value", value);
   console.log("view", view);
@@ -38,7 +24,6 @@ function CalendarPage() {
       <DefaultLayout>
         <Calendar
           onChange={onChange}
-          // onClick={handleDiaryView}
           value={value}
           formatDay={(locale, date) => moment(date).format("DD")}
           calendarType="US"
@@ -53,7 +38,7 @@ function CalendarPage() {
               <DiaryItem list={list} key={list.id} value={value} />
             ))
           ) : (
-            <p className="notice">there's no any diary</p>
+            <p className="notice">there's no diary-list</p>
           )}
         </Ul>
       </DefaultLayout>
