@@ -116,7 +116,7 @@ const MainLayout = styled.div`
   margin: 0 auto;
   color: #444;
   line-height: 1.4;
-  background-color: #f8ede2;
+  background-color: #f7efeb;
   min-height: (100vh - 60px);
   height: 100%;
   ${DefaultLayout} {
@@ -125,7 +125,7 @@ const MainLayout = styled.div`
     // min-height: 100vh;
     // height: 100%;
     align-items: center;
-    background-color: #f8ede2;
+    background-color: #f7efeb;
   }
   .selected-date {
     margin-top: 12px;
@@ -180,19 +180,6 @@ const MainLayout = styled.div`
 const Ul = styled.ul`
   max-width: 400px;
   width: 100%;
-  //display: grid;
-  //grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-  //grid-template-columns: repeat(1, 1fr);
-  //grid-template-row: repeat(auto-fill, minmax(300px, 1fr));
-  //grid-gap: 10px;
-  //display: flex;
-  //flex-wrap: wrap;
-  //max-width: 900px;
-  //background-color: ivory;
-
-  // margin: 0 auto;
-  //justify-content: center;
-  // flex-direction: column;
   padding: 8px;
 `;
 

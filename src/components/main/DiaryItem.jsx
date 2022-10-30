@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect} from "react";
+import React, { useCallback, useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
@@ -16,10 +16,10 @@ const DiaryItem = ({ list }) => {
     });
   }, []);
   return (
-      <Li onClick={() => handleGoDetail(list)}>
-        <pre className={'content'}>{list.value}</pre>
-        <p className={'date'}>{list.date}</p>
-      </Li>
+    <Li onClick={() => handleGoDetail(list)}>
+      <pre className={"content"}>{list.value}</pre>
+      <p className={"date"}>{list.date}</p>
+    </Li>
   );
 };
 const Li = styled.li`
