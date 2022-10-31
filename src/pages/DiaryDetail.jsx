@@ -95,9 +95,9 @@ function DiaryDetail() {
 
   return (
     <DiaryDetailStyle>
-      <Header leftIcon={"FaChevronLeft"} />
-      <DefaultLayout>
-        <div className="wrap-diarylist">
+        <Header leftIcon={"FaChevronLeft"} />
+        <DefaultLayout>
+          <div className="wrap-diary-list">
           <div className="text-area">
             {isEditing ? (
               <textarea
@@ -126,37 +126,32 @@ function DiaryDetail() {
 
 const DiaryDetailStyle = styled.div`
   background-color: #f7efeb;
+  min-height: calc(100vh - 60px);
   height: 100%;
-  min-height: 100vh;
   color: #444;
   line-height: 1.4;
-  .wrap-diarylist {
+  .wrap-diary-list {
     max-width: 600px;
     width: 100%;
-    // min-height: 100px;
     min-height: 30vh;
     height: 100%;
     background-color: #fff;
-    margin: 10px auto;
+    margin: 15px auto;
     border: 2px dashed #666;
     border-radius: 10px;
     position: relative;
     .text-area {
-      // min-height: 100%;
       textarea {
         border-radius: 5px;
-        // border: 1px solid #ddd;
         min-height: 200px;
         height: 100%;
         border: none;
         font-size: 16px;
         width: 100%;
-        // line-height: 1.4;
         color: #444;
         padding: 8px 12px;
         display: block;
         &:focus {
-          // outline: 1px solid gray;
           outline: none;
         }
       }
@@ -168,7 +163,6 @@ const DiaryDetailStyle = styled.div`
       text-align: right;
       display: flex;
       align-items: center;
-      // justify-content: right;
       position: absolute;
       right: 5px;
       bottom: 5px;

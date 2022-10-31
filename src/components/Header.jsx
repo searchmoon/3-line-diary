@@ -25,114 +25,121 @@ function Header({ leftIcon }) {
   }, [openModal]);
 
   return (
-    <HeaderLayout>
-      <DefaultLayout>
-        {leftIcon ? (
-          <Link to="/">
-            <HiOutlineChevronLeft size={20} />
-          </Link>
-        ) : (
-          <Link to="/calendar">
-            <BiCalendar size={22} />
-          </Link>
-        )}
-        <div className="title">
-          <Link to="/">3LINE DIARY</Link>
-        </div>
-        <IoSettingsOutline
-          size={20}
-          onClick={handleGoSetting}
-          style={{ cursor: "pointer" }}
-        />
-        {/* {openModal ? (
-          <BiX size={24} onClick={handleGoSetting} />
-        ) : (
-          <IoSettingsOutline size={20} onClick={handleGoSetting} />
-        )} */}
-        {openModal && (
-          <div className="modal-wrap">
-            <ul className="modal-content">
-              <div className="close-box">
-                <BiX
-                  size={24}
-                  onClick={handleClickClose}
-                  style={{ cursor: "pointer" }}
-                />
-              </div>
-              <li>
-                <MdLanguage />
-                <span>Language</span>
-              </li>
-              <li>
-                <BiBell />
-                <span>Notifications</span>
-              </li>
-              <li>
-                <BiMoon />
-                <span>Dark Mode</span>
-              </li>
-              <li>
-                <FaInstagram />
-                <span>Instagram</span>
-              </li>
-            </ul>
+      <HeaderLayout>
+        <DefaultLayout>
+          <div className="inline-header">
+          {leftIcon ? (
+            <Link to="/">
+              <HiOutlineChevronLeft size={22} />
+            </Link>
+          ) : (
+            <Link to="/calendar">
+              <BiCalendar size={22} />
+            </Link>
+          )}
+          <div className="title">
+            <Link to="/">3LINE DIARY</Link>
           </div>
-        )}
-      </DefaultLayout>
+          <IoSettingsOutline
+            size={20}
+            onClick={handleGoSetting}
+            style={{ cursor: "pointer" }}
+          />
+          {openModal && (
+            <div className="modal-wrap">
+              <ul className="modal-content">
+                <div className="close-box">
+                  <BiX
+                    size={24}
+                    onClick={handleClickClose}
+                    style={{ cursor: "pointer" }}
+                  />
+                </div>
+                <li>
+                  <MdLanguage />
+                  <span>Language</span>
+                </li>
+                <li>
+                  <BiBell />
+                  <span>Notifications</span>
+                </li>
+                <li>
+                  <BiMoon />
+                  <span>Dark Mode</span>
+                </li>
+                <li>
+                  <FaInstagram />
+                  <span>Instagram</span>
+                </li>
+              </ul>
+            </div>
+          )}
+          </div>
+        </DefaultLayout>
     </HeaderLayout>
   );
 }
 const HeaderLayout = styled.div`
+  height: 60px;
   width: 100%;
   background-color: #fff;
   color: #444;
   margin: 0 auto;
   ${DefaultLayout} {
-    height: 60px;
     width: 100%;
+    height: 100%;
+    background-color: #fff;
+  }
+  .inline-header {
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #fff;
-  }
-  .title {
-    font-size: 20px;
-    font-weight: 700;
-  }
-  .modal-wrap {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.6);
-    .modal-content {
+    .title {
+      font-size: 20px;
+      font-weight: 700;
+    }
+    .modal-wrap {
       position: absolute;
+      width: 100%;
+      height: 100%;
       top: 0;
-      right: 0;
-      height: 100vh;
-      background-color: white;
-      max-width: 260px;
-      width: 70vw;
-      padding: 18px 15px;
-      z-index: 10;
-      .close-box {
-        text-align: right;
-        margin-bottom: 20px;
-      }
-      li {
-        padding: 10px 7px;
-        margin-bottom: 10px;
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-        border-radius: 10px;
-        :hover {
-          background-color: #aaa;
-          color: #fff;
+      left: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+
+      .modal-content {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        background-color: white;
+        max-width: 260px;
+        width: 70vw;
+        padding: 18px 15px;
+        z-index: 10;
+
+        .close-box {
+          text-align: right;
+          margin-bottom: 20px;
         }
-        span {
-          margin-left: 10px;
+
+        li {
+          padding: 10px 7px;
+          margin-bottom: 10px;
+          display: flex;
+          align-items: center;
+          cursor: pointer;
+          border-radius: 10px;
+
+          :hover {
+            background-color: #aaa;
+            color: #fff;
+          }
+
+          span {
+            margin-left: 10px;
+          }
         }
       }
     }

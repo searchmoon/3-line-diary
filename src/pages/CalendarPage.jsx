@@ -1,4 +1,4 @@
-// import React from "react";
+import React from "react";
 import Header from "../components/Header";
 import { useState } from "react";
 import { useSelector } from "react-redux";
@@ -20,7 +20,7 @@ function CalendarPage() {
   console.log("view", view);
   return (
     <CalendarStyle>
-      <Header />
+      <Header leftIcon={"FaChevronLeft"} />
       <DefaultLayout>
         <Calendar
           onChange={onChange}
@@ -48,18 +48,24 @@ function CalendarPage() {
 const CalendarStyle = styled.div`
   background-color: #f7efeb;
   color: #444;
-  // min-height: calc(100vh - 60px);
-  min-height: 100vh;
+  min-height: calc(100vh - 60px);
   height: 100%;
-
+  width: 100%;
+  ${DefaultLayout} {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
   h3 {
-    text-align: center;
     margin: 20px 0;
     font-size: 20px;
-    text-align: center;
   }
   p {
     text-align: center;
+    font-size: 18px;
+    border-radius: 10px;
   }
 `;
 const Ul = styled.ul`

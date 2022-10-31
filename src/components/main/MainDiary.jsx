@@ -9,6 +9,7 @@ import "../../styles/calendar.css";
 import moment from "moment";
 import DiaryItem from "./DiaryItem";
 import Pagination from "../Pagination";
+import Header from "../Header";
 
 function MainDiary() {
   const dispatch = useDispatch();
@@ -69,6 +70,7 @@ function MainDiary() {
 
   return (
     <MainLayout>
+      <Header />
       <DefaultLayout>
         <Calendar
           onChange={onChange}
@@ -113,20 +115,18 @@ function MainDiary() {
 }
 
 const MainLayout = styled.div`
-  margin: 0 auto;
+  //margin: 0 auto;
   color: #444;
   line-height: 1.4;
   background-color: #f7efeb;
-  min-height: (100vh - 60px);
+  min-height: calc(100vh - 60px);
   height: 100%;
-  ${DefaultLayout} {
-    display: flex;
-    flex-direction: column;
-    // min-height: 100vh;
-    // height: 100%;
-    align-items: center;
-    background-color: #f7efeb;
-  }
+   ${DefaultLayout} {
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+   }
   .selected-date {
     margin-top: 12px;
     font-size: 20px;
@@ -142,7 +142,6 @@ const MainLayout = styled.div`
       width: 100%;
       line-height: 1.6;
       color: #444;
-      margin-bottom: 10px;
       padding: 12px;
       display: block;
       margin: 20px auto 15px;
