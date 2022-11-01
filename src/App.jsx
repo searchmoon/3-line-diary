@@ -5,12 +5,15 @@ import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React from "react";
+import {createTheme, CssBaseline, ThemeProvider} from "@mui/material";
+import {amber, deepOrange, grey} from "@mui/material/colors";
 
 function App() {
 
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
-      <GlobalStyles />
+        <CssBaseline />
+        <GlobalStyles />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/calendar" element={<CalendarPage />} />
