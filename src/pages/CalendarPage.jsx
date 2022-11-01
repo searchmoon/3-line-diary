@@ -46,7 +46,9 @@ function CalendarPage() {
   );
 }
 const CalendarStyle = styled.div`
-  background-color: #f7efeb;
+  //background-color: #f7efeb;
+  background-color: #fff;
+  background-color: #f5f5f5;
   color: #444;
   min-height: calc(100vh - 60px);
   height: 100%;

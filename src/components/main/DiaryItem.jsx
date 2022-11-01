@@ -27,13 +27,14 @@ const Li = styled.li`
   width: 100%;
   min-height: 70px;
   height: 100%;
-  margin: 7px 0;
+  margin-bottom: 10px;
   padding: 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border: 1px solid #ddd;
+  border: 2px dashed #ccc;
   cursor: pointer;
+  border-radius: 5px;
   .content {
     white-space: pre-line;
     box-sizing: border-box;

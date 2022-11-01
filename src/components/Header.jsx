@@ -7,6 +7,7 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { MdLanguage } from "react-icons/md";
 import { BiBell, BiMoon, BiCalendar, BiX } from "react-icons/bi";
 import { HiOutlineChevronLeft } from "react-icons/hi";
+import {Switch} from "@mui/material";
 
 function Header({ leftIcon }) {
   const [openModal, setOpenModal] = useState(false);
@@ -57,19 +58,20 @@ function Header({ leftIcon }) {
                 </div>
                 <li>
                   <MdLanguage />
-                  <span>Language</span>
+                  <p>Language</p>
                 </li>
                 <li>
                   <BiBell />
-                  <span>Notifications</span>
-                </li>
-                <li>
-                  <BiMoon />
-                  <span>Dark Mode</span>
+                  <p>Notifications</p>
                 </li>
                 <li>
                   <FaInstagram />
-                  <span>Instagram</span>
+                  <p>Instagram</p>
+                </li>
+                <li>
+                  <BiMoon />
+                  <p>Dark Mode</p>
+                  <Switch />
                 </li>
               </ul>
             </div>
@@ -83,12 +85,15 @@ const HeaderLayout = styled.div`
   height: 60px;
   width: 100%;
   background-color: #fff;
+  //background-color: #f5f5f5;
   color: #444;
   margin: 0 auto;
+  border-bottom: 2px dashed #666;
   ${DefaultLayout} {
     width: 100%;
     height: 100%;
     background-color: #fff;
+    //background-color: #f5f5f5;
   }
   .inline-header {
     width: 100%;
@@ -131,14 +136,18 @@ const HeaderLayout = styled.div`
           align-items: center;
           cursor: pointer;
           border-radius: 10px;
+          :last-child {
+            padding: 0 7px;
+          }
 
-          :hover {
+          :hover:not(:last-child) {
             background-color: #aaa;
             color: #fff;
           }
 
-          span {
+          p {
             margin-left: 10px;
+            height: 18px;
           }
         }
       }

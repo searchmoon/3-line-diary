@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React from "react";
 
 function App() {
+
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <GlobalStyles />

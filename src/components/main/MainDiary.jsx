@@ -118,14 +118,19 @@ const MainLayout = styled.div`
   //margin: 0 auto;
   color: #444;
   line-height: 1.4;
-  background-color: #f7efeb;
+  width: 100%;
+  //background-color: #eee;
+  background-color: #f5f5f5;
   min-height: calc(100vh - 60px);
   height: 100%;
-   ${DefaultLayout} {
+  //background: url("/images/white-bg.png") no-repeat 100% 100%;
+
+  ${DefaultLayout} {
      display: flex;
      flex-direction: column;
      justify-content: center;
      align-items: center;
+
    }
   .selected-date {
     margin-top: 12px;

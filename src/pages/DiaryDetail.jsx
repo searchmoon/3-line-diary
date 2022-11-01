@@ -125,7 +125,8 @@ function DiaryDetail() {
 }
 
 const DiaryDetailStyle = styled.div`
-  background-color: #f7efeb;
+  //background-color: #fff;
+  background-color: #f5f5f5;
   min-height: calc(100vh - 60px);
   height: 100%;
   color: #444;
