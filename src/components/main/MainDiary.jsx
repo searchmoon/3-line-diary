@@ -98,6 +98,8 @@ function MainDiary() {
             </button>
           )}
         </div>
+        <div className={'imgimg'}>
+        </div>
         <Ul>
           {currentPosts.map((list) => (
             <DiaryItem list={list} key={list.id} value={value} />
@@ -115,26 +117,25 @@ function MainDiary() {
 }
 
 const MainLayout = styled.div`
-  //margin: 0 auto;
   color: #444;
   line-height: 1.4;
   width: 100%;
-  //background-color: #eee;
   background-color: #f5f5f5;
   min-height: calc(100vh - 60px);
   height: 100%;
-  //background: url("/images/white-bg.png") no-repeat 100% 100%;
-
+  //background: url("/images/black-bg.png") no-repeat;
+  //background-size: cover;
   ${DefaultLayout} {
      display: flex;
      flex-direction: column;
      justify-content: center;
      align-items: center;
-
    }
   .selected-date {
     margin-top: 12px;
     font-size: 20px;
+    background: url("/images/black-bg.png") no-repeat;
+    background-size: cover;
   }
   .diary-box {
     margin: 0 auto;
@@ -156,15 +157,15 @@ const MainLayout = styled.div`
     }
     .done-btn {
       color: #40684a;
-      font-size: 16px;
+      font-size: 14px;
       font-weight: 700;
       background-color: #dbe9de;
       border: 1px solid #ccc;
-      border-radius: 5px;
-      padding: 7px 20px;
+      border-radius: 10px;
+      padding: 6px 17px;
       content-visibility: auto;
       display: block;
-      margin: 0 auto 15px;
+      margin: 0 auto 12px;
     }
   }
 

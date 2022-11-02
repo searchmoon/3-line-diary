@@ -34,7 +34,7 @@ function Header({ leftIcon }) {
             </Link>
           )}
           <div className="title">
-            <Link to="/">3LINE DIARY</Link>
+            <Link to="/">3 LINE DIARY</Link>
           </div>
           <IoSettingsOutline
             size={20}
