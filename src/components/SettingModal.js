@@ -45,7 +45,9 @@ const SettingModal = ({openModal, setOpenModal}) => {
                 </li>
                 <li>
                     <BiMoon />
-                    <FormControlLabel control={<Switch onChange={handleModeChange} color={"default"}/>} label="Dark Mode" labelPlacement="start" />
+                    <p>Dark Mode</p>
+                    <Switch color={"default"}/>
+                    {/*<FormControlLabel control={<Switch color={"default"}/>} label="Dark Mode" labelPlacement="start" />*/}
                 </li>
             </ul>
         </ModalWrap>

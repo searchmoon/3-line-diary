@@ -6,8 +6,7 @@ import reset from "styled-reset";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React from "react";
 import {createTheme, CssBaseline, ThemeProvider} from "@mui/material";
-import {amber, deepOrange, grey} from "@mui/material/colors";
-
+import "../src/styles/webfont.scss"
 function App() {
 
   return (
@@ -36,6 +35,9 @@ const GlobalStyles = createGlobalStyle`
     a {
       text-decoration: none;
       color: inherit;
+    }
+    div, p, span, h1, h2, h3, h4, h5, h6, input, button, textarea {
+      font-family: "EF_Diary", "Sans-serif";
     }
 `;
 export default App;
