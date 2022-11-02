@@ -13,17 +13,17 @@ const SettingModal = ({openModal, setOpenModal}) => {
         document.body.style.overflow = "unset";
     }, [openModal]);
 
-    const [darkmode, setDarkmode] = useState(false);
+    // const [darkmode, setDarkmode] = useState("light");
 
-    const handleModeChange = useCallback(() => {
+    // const handleModeChange = useCallback(() => {
         // const darkMode = document.querySelector(".modal-content");
         // darkMode.classList.toggle("dark");
-        setDarkmode(!darkmode);
-        }, [darkmode])
-    console.log(darkmode);
+        // setDarkmode((prev) => (prev === "light" ? "dark" : "light"));
+        // }, [darkmode])
+    // console.log(darkmode);
     return (
         <ModalWrap>
-            <ul className="modal-content">
+            <ul className= "modal-content" >
                 <div className="close-box">
                     <BiX
                         size={24}
@@ -69,7 +69,7 @@ const ModalWrap = styled.div`
       width: 70vw;
       padding: 18px 15px;
       z-index: 10;
-      //&.dark {
+      //&#dark {
       //  background-color: #1e1e1e;
       //}
       .close-box {

@@ -78,6 +78,7 @@ function DiaryDetail() {
       );
       console.log(item);
       alert("삭제 완료");
+      window.location.href = "/3-line-diary";
     },
     [dispatch(deleteList)]
   );
