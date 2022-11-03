@@ -97,7 +97,7 @@ const ModalWrap = styled.div`
 
         p {
           margin-left: 10px;
-          //height: 18px;
+          height: 18px;
         }
       }
     }

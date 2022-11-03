@@ -17,7 +17,7 @@ function MainDiary() {
   console.log("lists", lists);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(6);
+  const [postsPerPage, setPostsPerPage] = useState(3);
 
   const lastPostIndex = currentPage * postsPerPage;
   // ex) 20 = 2 * 10
@@ -27,6 +27,12 @@ function MainDiary() {
   // ex) 6 = 12 - 6
   const currentPosts = lists.slice(firstPostIndex, lastPostIndex);
   console.log("currentPosts", currentPosts);
+  console.log("postsPerPage", postsPerPage);
+  console.log("currentPage", currentPage);
+  //  totalPosts(10) 나누기 postsPerPage(3) = 에서 올림 (ceil) 하면 총 페이지 수(4) 나옴.
+  //  pages 가 5 이상일때 페이지네이션 하기. 1~5까지, 6~10까지 이런식으로. 페이지네이션 된걸 또 페이지네이션?
+  // postsPerPage(3) * 5 이상일 때부터 pagination. 어렵넹ㅎ
+  // pages 가 5 이상일때
 
   const [textValue, setTextValue] = useState("");
   const [value, onChange] = useState(new Date());
@@ -141,7 +147,7 @@ const MainLayout = styled.div`
     margin: 0 auto;
     width: 100%;
     textarea {
-      border-radius: 5px;
+      border-radius: 10px;
       border: 1px solid #ddd;
       max-width: 400px;
       font-size: 16px;
@@ -183,7 +189,7 @@ const MainLayout = styled.div`
   }
 `;
 const Ul = styled.ul`
-  max-width: 400px;
+  max-width: 370px;
   width: 100%;
   padding: 8px;
 `;

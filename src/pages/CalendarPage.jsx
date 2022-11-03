@@ -40,7 +40,7 @@ function CalendarPage() {
               <DiaryItem list={list} key={list.id} value={value} />
             ))
           ) : (<>
-                <p className="notice">there's no diary-list <SentimentDissatisfied style={{marginTop:"10px", width: "40px", height: "40px" }}/>
+                <p className="notice">there's no diary-list<SentimentDissatisfied style={{width: "20px", height: "20px" }}/>
                 </p>
               </>
           )}
@@ -67,14 +67,18 @@ const CalendarStyle = styled.div`
   h3 {
     margin: 20px 0;
     font-size: 20px;
+    background-color: #ddd;
+    padding: 5px 40px;
+    border-radius: 20px;
   }
   p {
     text-align: center;
     font-size: 18px;
+    margin-bottom: 10px;
   }
 `;
 const Ul = styled.ul`
-  max-width: 300px;
+  max-width: 370px;
   width: 100%;
   padding: 8px;
   margin: 0 auto;
@@ -82,11 +86,14 @@ const Ul = styled.ul`
     margin-top: 10px;
     background-color: #aaa;
     padding: 10px 0;
+    height: 100px;
     color: #fff;
     display: flex;
-    flex-direction: column;
+    border: 2px dashed #fff;
+    //flex-direction: column;
     font-weight: 600;
     align-items: center;
+    justify-content: center;
     border-radius: 10px;
   }
 `;
