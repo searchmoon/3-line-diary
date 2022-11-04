@@ -40,7 +40,7 @@
 .react-calendar__navigation {
   display: flex;
   height: 50px;
-  margin-bottom: 1em;
+  margin-bottom: 10px;
 }
 .react-calendar__navigation button {
   color: #40684a;
@@ -49,6 +49,10 @@
   font-size: 16px;
   margin-top: 8px;
 }
+.react-calendar__navigation .react-calendar__navigation__prev-button,
+.react-calendar__navigation .react-calendar__navigation__next-button {
+  font-size: 24px;
+}
 
 .react-calendar__navigation button:disabled {
   background-color: #f0f0f0;
@@ -56,6 +60,13 @@
 .react-calendar__navigation button:enabled:hover,
 .react-calendar__navigation button:enabled:focus {
   background-color: #f8f8fa;
+}
+.react-calendar__navigation__prev-button,
+.react-calendar__navigation__next-button {
+}
+.react-calendar__navigation__prev2-button,
+.react-calendar__navigation__next2-button {
+  display: none;
 }
 .react-calendar__month-view__weekdays {
   text-align: center;
