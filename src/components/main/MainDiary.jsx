@@ -18,7 +18,7 @@ function MainDiary() {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(3);
-
+  //pagenation 하기
   const lastPostIndex = currentPage * postsPerPage;
   // ex) 20 = 2 * 10
   // ex) 12 = 2 * 6
@@ -31,7 +31,7 @@ function MainDiary() {
   console.log("currentPage", currentPage);
   //  totalPosts(10) 나누기 postsPerPage(3) = 에서 올림 (ceil) 하면 총 페이지 수(4) 나옴.
   //  pages 가 5 이상일때 페이지네이션 하기. 1~5까지, 6~10까지 이런식으로. 페이지네이션 된걸 또 페이지네이션?
-  // postsPerPage(3) * 5 이상일 때부터 pagination. 어렵넹ㅎ
+  // totalPosts가  postsPerPage(3) * 5 이상일 때부터 pagination. 어렵넹ㅎ
   // pages 가 5 이상일때
 
   const [textValue, setTextValue] = useState("");
@@ -104,8 +104,7 @@ function MainDiary() {
             </button>
           )}
         </div>
-        <div className={'imgimg'}>
-        </div>
+        <div className={"imgimg"}></div>
         <Ul>
           {currentPosts.map((list) => (
             <DiaryItem list={list} key={list.id} value={value} />
@@ -132,11 +131,11 @@ const MainLayout = styled.div`
   //background: url("/images/black-bg.png") no-repeat;
   //background-size: cover;
   ${DefaultLayout} {
-     display: flex;
-     flex-direction: column;
-     justify-content: center;
-     align-items: center;
-   }
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
   .selected-date {
     margin-top: 12px;
     font-size: 20px;

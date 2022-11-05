@@ -1,22 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { ArrowForwardIos, ArrowBackIos } from "@mui/icons-material";
 
 const Pagination = ({ totalPosts, postsPerPage, setCurrentPage }) => {
+  const [onActiveArrow, setOnActiveArrow] = useState(false);
   let pages = [];
   for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
     pages.push(i);
   }
   console.log("pages", pages);
   console.log("totalPosts", totalPosts);
+
+  //  totalPosts(10) 나누기 postsPerPage(3) = 에서 올림 (ceil) 하면 총 페이지 수(4) 나옴.
+  //  pages 가 5 이상일때 페이지네이션 하기. 1~5까지, 6~10까지 이런식으로. 페이지네이션 된걸 또 페이지네이션?
+  // totalPosts가  postsPerPage(3) * 5 이상일 때부터 pagination. 어렵넹ㅎ
+  // pages 가 5 이상일때
+  useEffect(() => {
+    if (totalPosts > postsPerPage * 5) {
+      setOnActiveArrow(true);
+    } else {
+      setOnActiveArrow(false);
+    }
+  }, [totalPosts]);
   return (
     <PageStyle>
-      {pages.map((page, i) => {
-        return (
-          <button key={i} onClick={() => setCurrentPage(page)}>
-            {page}
-          </button>
-        );
-      })}
+      <>
+        {onActiveArrow && <ArrowBackIos />}
+        {pages.map((page, i) => {
+          return (
+            <button key={i} onClick={() => setCurrentPage(page)}>
+              {page}
+            </button>
+          );
+        })}
+        {onActiveArrow && <ArrowForwardIos />}
+      </>
     </PageStyle>
   );
 };
