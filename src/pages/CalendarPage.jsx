@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import moment from "moment";
 import { Calendar } from "react-calendar";
 import styled from "styled-components";
-import { DefaultLayout } from "../components/layout/layout";
+import { DefaultLayout } from "../components/layout/Layout";
 import DiaryItem from "../components/main/DiaryItem";
 import { SentimentDissatisfied } from '@mui/icons-material';
 

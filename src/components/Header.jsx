@@ -1,9 +1,9 @@
 import React, { useCallback, useState } from "react";
-import { DefaultLayout } from "./layout/layout";
+import { DefaultLayout } from "./layout/Layout";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { IoSettingsOutline } from "react-icons/io5";
-import { BiBell, BiMoon, BiCalendar, BiX } from "react-icons/bi";
+import { BiCalendar } from "react-icons/bi";
 import { HiOutlineChevronLeft } from "react-icons/hi";
 import SettingModal from "./SettingModal";
 

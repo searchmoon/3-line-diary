@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { respSize } from "../common/common";
+import { respSize } from "../common/Common";
 
 export const DefaultLayout = styled.div`
   box-sizing: border-box;

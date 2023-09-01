@@ -1,7 +1,7 @@
 import React, { useCallback, useState, useEffect } from "react";
-import { DefaultLayout } from "../layout/layout";
+import { DefaultLayout } from "../layout/Layout";
 import styled from "styled-components";
-import { respSize } from "../common/common";
+import { respSize } from "../common/Common";
 import { useDispatch, useSelector } from "react-redux";
 import { addDiaryList, setStorageList } from "../../features/diarySlice";
 import { Calendar } from "react-calendar";
@@ -39,7 +39,7 @@ function MainDiary() {
   // pages 가 5 이상일때
 
   const [textValue, setTextValue] = useState("");
-  const [value, onChange] = useState(new Date());
+
   const jsonLocalStorage = {
     setItem: (key, value) => {
       localStorage.setItem(key, JSON.stringify(value));
@@ -58,6 +58,7 @@ function MainDiary() {
   useEffect(() => {
     jsonLocalStorage.setItem("diaryList", lists);
   }, [lists]);
+  console.log("제이슨", JSON.stringify(lists));
 
   const handleTextChange = useCallback(
     (e) => {
@@ -65,7 +66,9 @@ function MainDiary() {
     },
     [setTextValue]
   );
-
+  //moment 라이브러리 사용하기 위한 useState(start)
+  const [value, onChange] = useState(new Date());
+  //(end)
   const handleDoneClick = useCallback(() => {
     dispatch(
       addDiaryList({
@@ -144,7 +147,6 @@ const MainLayout = styled.div`
   .selected-date {
     margin-top: 12px;
     font-size: 20px;
-    background: url("/images/black-bg.png") no-repeat;
     background-size: cover;
   }
   .diary-box {

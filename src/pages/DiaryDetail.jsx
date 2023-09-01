@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useLocation, useNavigate } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import Header from "../components/Header";
-import { DefaultLayout } from "../components/layout/layout";
+import { DefaultLayout } from "../components/layout/Layout";
 import {
   doneEditList,
   deleteList,
@@ -15,7 +15,6 @@ function DiaryDetail() {
   const { id } = useParams();
   const location = useLocation();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const item = location.state;
 
   console.log("item", item);
@@ -91,14 +90,15 @@ function DiaryDetail() {
 
   useEffect(() => {
     console.log("params", id);
+
     dispatch(getDiaryItem(id));
   }, []);
 
   return (
     <DiaryDetailStyle>
-        <Header leftIcon={"FaChevronLeft"} />
-        <DefaultLayout>
-          <div className="wrap-diary-list">
+      <Header leftIcon={"FaChevronLeft"} />
+      <DefaultLayout>
+        <div className="wrap-diary-list">
           <div className="text-area">
             {isEditing ? (
               <textarea
