@@ -7,8 +7,7 @@ import { Calendar } from "react-calendar";
 import styled from "styled-components";
 import { DefaultLayout } from "../components/layout/Layout";
 import DiaryItem from "../components/main/DiaryItem";
-import { SentimentDissatisfied } from '@mui/icons-material';
-
+import { SentimentDissatisfied } from "@mui/icons-material";
 
 function CalendarPage() {
   const [value, onChange] = useState(new Date());
@@ -39,10 +38,15 @@ function CalendarPage() {
             view?.map((list) => (
               <DiaryItem list={list} key={list.id} value={value} />
             ))
-          ) : (<>
-                <p className="notice">there's no diary-list<SentimentDissatisfied style={{width: "20px", height: "20px" }}/>
-                </p>
-              </>
+          ) : (
+            <>
+              <p className="notice">
+                there's no diary-list
+                <SentimentDissatisfied
+                  style={{ width: "20px", height: "20px" }}
+                />
+              </p>
+            </>
           )}
         </Ul>
       </DefaultLayout>
