@@ -1,5 +1,3 @@
-//순차적으로 어두워지는 컬러로 설정
-
 const lightTheme = {
   bgText: "#fff",
   bgBody: "#f5f5f5",
@@ -15,6 +13,7 @@ const darkTheme = {
   dashed: "#666",
   lightDashed: "#777",
 };
+
 const theme = {
   lightTheme,
   darkTheme,

@@ -17,10 +17,6 @@ function DiaryDetail() {
   const dispatch = useDispatch();
   const item = location.state;
 
-  console.log("item", item);
-  console.log("location state", location.state);
-  console.log("location", location);
-
   const lists = useSelector((state) => state.diary.lists);
 
   const jsonLocalStorage = {
@@ -35,7 +31,6 @@ function DiaryDetail() {
     if (jsonLocalStorage.getItem("diaryList")) {
       dispatch(setStorageList(jsonLocalStorage.getItem("diaryList")));
     }
-    //if(jsonLocalStorage.getItem('diaryList'))의 값이 있을때만 불러오기!
   }, []);
 
   useEffect(() => {
@@ -45,9 +40,6 @@ function DiaryDetail() {
   const [isEditing, setIsEditing] = useState(false);
   const [doneEditText, setDoneEditText] = useState(item.value);
 
-  // const diaryId = location.state.id;
-  // const value = location.state.value;
-  // const date = location.state.date;
   const handleEditText = useCallback(() => {
     setIsEditing(!isEditing);
   }, []);
@@ -75,7 +67,6 @@ function DiaryDetail() {
           dateformat: item.dateformat,
         })
       );
-      console.log(item);
       alert("Delete completed");
       window.location.href = "/3-line-diary";
     },
@@ -89,8 +80,6 @@ function DiaryDetail() {
   );
 
   useEffect(() => {
-    console.log("params", id);
-
     dispatch(getDiaryItem(id));
   }, []);
 

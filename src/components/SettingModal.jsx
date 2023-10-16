@@ -1,10 +1,9 @@
-import React from "react";
 import styled from "styled-components";
 import { BiBell, BiMoon, BiX } from "react-icons/bi";
 import { MdLanguage } from "react-icons/md";
 import { FaInstagram } from "react-icons/fa";
-import { FormControlLabel, Switch } from "@mui/material";
-import { useCallback, useState } from "react";
+import { Switch } from "@mui/material";
+import { useCallback } from "react";
 
 const SettingModal = ({ openModal, setOpenModal }) => {
   const handleClickClose = useCallback(() => {
@@ -12,14 +11,6 @@ const SettingModal = ({ openModal, setOpenModal }) => {
     document.body.style.overflow = "unset";
   }, [openModal]);
 
-  // const [darkmode, setDarkmode] = useState("light");
-
-  // const handleModeChange = useCallback(() => {
-  // const darkMode = document.querySelector(".modal-content");
-  // darkMode.classList.toggle("dark");
-  // setDarkmode((prev) => (prev === "light" ? "dark" : "light"));
-  // }, [darkmode])
-  // console.log(darkmode);
   return (
     <ModalWrap>
       <ul className="modal-content">

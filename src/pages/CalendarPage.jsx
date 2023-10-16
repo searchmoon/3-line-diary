@@ -8,6 +8,7 @@ import styled from "styled-components";
 import { DefaultLayout } from "../components/layout/Layout";
 import DiaryItem from "../components/main/DiaryItem";
 import { SentimentDissatisfied } from "@mui/icons-material";
+import theme from "styles/theme";
 
 function CalendarPage() {
   const [value, onChange] = useState(new Date());
@@ -15,10 +16,7 @@ function CalendarPage() {
 
   let selectedDate = moment(value).format("YYMMDD");
   const view = lists.filter((list) => selectedDate == list.dateformat);
-  console.log("selectedDate", typeof selectedDate);
-  console.log("lists", lists);
-  console.log("value", value);
-  console.log("view", view);
+
   return (
     <CalendarStyle>
       <Header leftIcon={"FaChevronLeft"} />

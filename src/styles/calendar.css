@@ -1,7 +1,7 @@
 .react-calendar {
   width: 400px;
   max-width: 100%;
-  background-color: #fff;
+  background-color: #ddd;
   color: #444;
   border-radius: 8px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
@@ -9,6 +9,7 @@
   line-height: 1.125em;
   margin: 10px auto;
   padding: 5px;
+  border: 1px solid #777;
 }
 .react-calendar--doubleView {
   width: 700px;
@@ -59,7 +60,6 @@
 }
 .react-calendar__navigation button:enabled:hover,
 .react-calendar__navigation button:enabled:focus {
-  background-color: #f8f8fa;
 }
 .react-calendar__navigation__prev-button,
 .react-calendar__navigation__next-button {

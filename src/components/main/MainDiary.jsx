@@ -14,7 +14,6 @@ import Header from "../Header";
 function MainDiary(props) {
   const dispatch = useDispatch();
   const lists = useSelector((state) => state.diary.lists);
-  console.log("lists", lists);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(3);
@@ -28,11 +27,6 @@ function MainDiary(props) {
   const currentPosts = lists.slice(firstPostIndex, lastPostIndex);
   const onePageList = postsPerPage * 5;
   const current5Page = lists.slice(onePageList);
-  console.log("currentPosts", currentPosts);
-  console.log("postsPerPage", postsPerPage);
-  console.log("currentPage", currentPage);
-  console.log("firstPostIndex", firstPostIndex);
-  console.log("lastPostIndex", lastPostIndex);
   //  totalPosts(10) 나누기 postsPerPage(3) = 에서 올림 (ceil) 하면 총 페이지 수(4) 나옴.
   //  pages 가 5 이상일때 페이지네이션 하기. 1~5까지, 6~10까지 이런식으로. 페이지네이션 된걸 또 페이지네이션?
   // totalPosts가  postsPerPage(3) * 5 이상일 때부터 pagination. 어렵넹ㅎ
@@ -58,7 +52,6 @@ function MainDiary(props) {
   useEffect(() => {
     jsonLocalStorage.setItem("diaryList", lists);
   }, [lists]);
-  console.log("제이슨", JSON.stringify(lists));
 
   const handleTextChange = useCallback(
     (e) => {
@@ -93,7 +86,6 @@ function MainDiary(props) {
           calendarType="US"
           locale="en-US"
         />
-        {console.log("날짜", moment(value))}
         <div className={"selected-date"}>
           {moment(value).format("YYYY-MM-DD")}
           {" 's Diary"}
@@ -118,7 +110,6 @@ function MainDiary(props) {
             <DiaryItem list={list} key={list.id} value={value} />
           ))}
         </Ul>
-        {console.log("currentPosts", currentPosts)}
         <Pagination
           totalPosts={lists.length}
           postsPerPage={postsPerPage}

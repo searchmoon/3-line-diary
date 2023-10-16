@@ -11,10 +11,7 @@ function Header({ leftIcon }) {
   const [openModal, setOpenModal] = useState(false);
 
   const handleGoSetting = useCallback(() => {
-    // const settingBtn = document.querySelector(".setting-modal");
-    // settingBtn.classList.toggle("on");
     setOpenModal(!openModal);
-    console.log(openModal);
     document.body.style.overflow = "hidden";
     //모달창 스크롤 방지
   }, [openModal]);

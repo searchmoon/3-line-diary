@@ -14,12 +14,6 @@ const Pagination = ({
   for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
     pages.push(i);
   }
-  console.log("pages", pages);
-  console.log("totalPosts", totalPosts);
-  console.log(
-    "(Math.ceil(totalPosts / postsPerPage)",
-    Math.ceil(totalPosts / postsPerPage)
-  );
 
   const handleBackClick = useCallback(() => {
     if (currentPage > 1) {

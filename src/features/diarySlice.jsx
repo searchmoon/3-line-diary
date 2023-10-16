@@ -16,8 +16,6 @@ export const diarySlice = createSlice({
     },
     deleteList: (state, action) => {
       state.lists = state.lists.filter((item) => item.id !== action.payload.id);
-      console.log(state.item);
-      console.log(state.lists);
     },
     doneEditList: (state, action) => {
       state.lists = [
