@@ -1,10 +1,10 @@
 import React from "react";
 import MainDiary from "../components/main/MainDiary";
 
-function Home(props) {
+function Home() {
   return (
     <div>
-      <MainDiary handleClick={props.handleClick} />
+      <MainDiary />
     </div>
   );
 }

@@ -11,9 +11,6 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "@types/node": "20.5.7",
-    "@types/react": "18.2.21",
-    "@types/react-dom": "18.2.7",
     "moment": "^2.29.4",
     "node-sass": "7.0.3",
     "react": "^18.2.0",
@@ -25,7 +22,6 @@
     "react-scripts": "5.0.1",
     "styled-components": "^5.3.6",
     "styled-reset": "^4.4.2",
-    "typescript": "5.2.2",
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
@@ -34,6 +30,7 @@
     "@emotion/babel-plugin": "11.3.0",
     "eslint": "8.21.0",
     "eslint-config-next": "12.2.4",
+    "eslint-plugin-react": "7.33.2",
     "gh-pages": "^4.0.0"
   },
   "scripts": {

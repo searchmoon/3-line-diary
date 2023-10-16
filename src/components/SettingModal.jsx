@@ -4,12 +4,23 @@ import { MdLanguage } from "react-icons/md";
 import { FaInstagram } from "react-icons/fa";
 import { Switch } from "@mui/material";
 import { useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setDarkMode } from "../features/themeSlice";
 
-const SettingModal = ({ openModal, setOpenModal }) => {
+const SettingModal = ({ setOpenModal }) => {
+  const mode = useSelector((state) => state.theme.mode);
+
   const handleClickClose = useCallback(() => {
-    setOpenModal(!openModal);
+    setOpenModal((prev) => !prev);
     document.body.style.overflow = "unset";
-  }, [openModal]);
+    console.log(mode);
+  }, [setOpenModal]);
+
+  const dispatch = useDispatch();
+
+  const handleModeChange = () => {
+    dispatch(setDarkMode(mode));
+  };
 
   return (
     <ModalWrap>
@@ -36,8 +47,7 @@ const SettingModal = ({ openModal, setOpenModal }) => {
         <li>
           <BiMoon />
           <p>Dark Mode</p>
-          <Switch color={"default"} />
-          {/*<FormControlLabel control={<Switch color={"default"}/>} label="Dark Mode" labelPlacement="start" />*/}
+          <Switch color={"default"} checked={mode} onClick={handleModeChange} />
         </li>
       </ul>
     </ModalWrap>

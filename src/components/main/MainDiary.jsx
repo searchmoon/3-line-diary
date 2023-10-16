@@ -11,7 +11,7 @@ import DiaryItem from "./DiaryItem";
 import Pagination from "../Pagination";
 import Header from "../Header";
 
-function MainDiary(props) {
+function MainDiary() {
   const dispatch = useDispatch();
   const lists = useSelector((state) => state.diary.lists);
 
@@ -78,7 +78,6 @@ function MainDiary(props) {
     <MainLayout>
       <Header />
       <DefaultLayout>
-        <button onClick={props.handleClick}>다크모드 토글</button>
         <Calendar
           onChange={onChange}
           value={value}

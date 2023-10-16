@@ -8,7 +8,6 @@ import styled from "styled-components";
 import { DefaultLayout } from "../components/layout/Layout";
 import DiaryItem from "../components/main/DiaryItem";
 import { SentimentDissatisfied } from "@mui/icons-material";
-import theme from "styles/theme";
 
 function CalendarPage() {
   const [value, onChange] = useState(new Date());

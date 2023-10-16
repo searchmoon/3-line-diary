@@ -38,7 +38,8 @@ function Header({ leftIcon }) {
             style={{ cursor: "pointer" }}
           />
           {openModal && (
-            <SettingModal openModal={openModal} setOpenModal={setOpenModal} />
+            // <SettingModal openModal={openModal} setOpenModal={setOpenModal} />
+            <SettingModal setOpenModal={setOpenModal} />
           )}
         </div>
       </DefaultLayout>

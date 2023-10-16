@@ -8,21 +8,18 @@ import React, { useState } from "react";
 import { CssBaseline } from "@mui/material";
 import "../src/styles/webfont.scss";
 import theme from "./styles/theme";
+import { useSelector } from "react-redux";
 
 function App() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  const handleToggleTheme = () => {
-    setIsDarkMode((prev) => !prev);
-  };
+  const mode = useSelector((state) => state.theme.mode);
 
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <CssBaseline />
       <GlobalStyles />
-      <ThemeProvider theme={isDarkMode ? theme.darkTheme : theme.lightTheme}>
+      <ThemeProvider theme={mode ? theme.darkTheme : theme.lightTheme}>
         <Routes>
-          <Route path="/" element={<Home handleClick={handleToggleTheme} />} />
+          <Route path="/" element={<Home />} />
           <Route path="/calendar" element={<CalendarPage />} />
           <Route path="/diaryDetail/:id" element={<DiaryDetail />} />
         </Routes>
