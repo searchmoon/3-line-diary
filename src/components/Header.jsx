@@ -10,7 +10,6 @@ import SettingModal from "./SettingModal";
 function Header({ leftIcon }) {
   const [openModal, setOpenModal] = useState(false);
 
-
   const handleGoSetting = useCallback(() => {
     // const settingBtn = document.querySelector(".setting-modal");
     // settingBtn.classList.toggle("on");
@@ -21,9 +20,9 @@ function Header({ leftIcon }) {
   }, [openModal]);
 
   return (
-      <HeaderLayout>
-        <DefaultLayout>
-          <div className="inline-header">
+    <HeaderLayout>
+      <DefaultLayout>
+        <div className="inline-header">
           {leftIcon ? (
             <Link to="/">
               <HiOutlineChevronLeft size={22} />
@@ -42,26 +41,24 @@ function Header({ leftIcon }) {
             style={{ cursor: "pointer" }}
           />
           {openModal && (
-              <SettingModal openModal={openModal} setOpenModal={setOpenModal} />
+            <SettingModal openModal={openModal} setOpenModal={setOpenModal} />
           )}
-          </div>
-        </DefaultLayout>
+        </div>
+      </DefaultLayout>
     </HeaderLayout>
   );
 }
 const HeaderLayout = styled.div`
   height: 60px;
   width: 100%;
-  background-color: #fff;
-  //background-color: #f5f5f5;
-  color: #444;
+  background-color: ${(props) => props.theme.bgText};
+  color: ${(props) => props.theme.text};
   margin: 0 auto;
-  border-bottom: 2px dashed #666;
+  border-bottom: 2px dashed ${(props) => props.theme.dashed};
   ${DefaultLayout} {
     width: 100%;
     height: 100%;
-    background-color: #fff;
-    //background-color: #f5f5f5;
+    background-color: ${(props) => props.theme.bgText};
   }
   .inline-header {
     width: 100%;

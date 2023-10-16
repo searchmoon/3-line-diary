@@ -126,20 +126,19 @@ function DiaryDetail() {
 }
 
 const DiaryDetailStyle = styled.div`
-  //background-color: #fff;
-  background-color: #f5f5f5;
+  background-color: ${(props) => props.theme.bgBody};
   min-height: calc(100vh - 60px);
   height: 100%;
-  color: #444;
+  color: ${(props) => props.theme.text};
   line-height: 1.4;
   .wrap-diary-list {
     max-width: 600px;
     width: 100%;
     min-height: 30vh;
     height: 100%;
-    background-color: #fff;
+    background-color: ${(props) => props.theme.bgText};
     margin: 15px auto;
-    border: 2px dashed #666;
+    border: 2px dashed ${(props) => props.theme.dashed};
     border-radius: 10px;
     position: relative;
     .text-area {
@@ -150,7 +149,7 @@ const DiaryDetailStyle = styled.div`
         border: none;
         font-size: 16px;
         width: 100%;
-        color: #444;
+        color: ${(props) => props.theme.text};
         padding: 8px 12px;
         display: block;
         &:focus {
@@ -172,8 +171,8 @@ const DiaryDetailStyle = styled.div`
         margin-right: 5px;
       }
       button {
-        color: #fff;
-        background-color: #bbb;
+        color: ${(props) => props.theme.bgText};
+        background-color: ${(props) => props.theme.lightDashed};
         display: inline-block;
         padding: 4px 8px;
         font-size: 16px;
@@ -181,8 +180,8 @@ const DiaryDetailStyle = styled.div`
         border-radius: 5px;
         border: 1px solid #bbb;
         &:active {
-          background-color: #666;
-          color: #fff;
+          background-color: ${(props) => props.theme.dashed};
+          color: ${(props) => props.theme.bgText};
         }
       }
     }

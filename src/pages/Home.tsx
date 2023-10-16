@@ -1,13 +1,12 @@
 import React from "react";
 import MainDiary from "../components/main/MainDiary";
-import styled from "styled-components";
 
-function Home() {
+function Home(props) {
   return (
-    <HomeWrap>
-      <MainDiary />
-    </HomeWrap>
+    <div>
+      <MainDiary handleClick={props.handleClick} />
+    </div>
   );
 }
-const HomeWrap = styled.div``;
+
 export default Home;

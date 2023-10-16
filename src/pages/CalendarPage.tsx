@@ -54,10 +54,8 @@ function CalendarPage() {
   );
 }
 const CalendarStyle = styled.div`
-  //background-color: #f7efeb;
-  background-color: #fff;
-  background-color: #f5f5f5;
-  color: #444;
+  background-color: ${(props) => props.theme.bgBody};
+  color: ${(props) => props.theme.text};
   min-height: calc(100vh - 60px);
   height: 100%;
   width: 100%;
@@ -71,7 +69,7 @@ const CalendarStyle = styled.div`
   h3 {
     margin: 20px 0;
     font-size: 20px;
-    background-color: #ddd;
+    background-color: #${(props) => props.theme.lightDashed};
     padding: 5px 40px;
     border-radius: 20px;
   }
@@ -88,12 +86,12 @@ const Ul = styled.ul`
   margin: 0 auto;
   .notice {
     margin-top: 10px;
-    background-color: #aaa;
+    background-color: ${(props) => props.theme.lightDashed};
     padding: 10px 0;
     height: 100px;
-    color: #fff;
+    color: ${(props) => props.theme.bgText};
     display: flex;
-    border: 2px dashed #fff;
+    border: 2px dashed ${(props) => props.theme.bgText};
     //flex-direction: column;
     font-weight: 600;
     align-items: center;

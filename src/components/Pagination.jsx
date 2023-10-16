@@ -79,13 +79,13 @@ const PageStyle = styled.div`
     cursor: pointer;
     position: relative;
     font-weight: 500;
-    color: #444;
+    color: ${(props) => props.theme.text};
     &:not(:first-child):after {
       content: "";
       display: block;
       width: 1px;
       height: 16px;
-      background-color: gray;
+      background-color: ${(props) => props.theme.dashed};
       position: absolute;
       top: 1px;
       left: -8px;

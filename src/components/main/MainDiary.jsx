@@ -11,7 +11,7 @@ import DiaryItem from "./DiaryItem";
 import Pagination from "../Pagination";
 import Header from "../Header";
 
-function MainDiary() {
+function MainDiary(props) {
   const dispatch = useDispatch();
   const lists = useSelector((state) => state.diary.lists);
   console.log("lists", lists);
@@ -85,6 +85,7 @@ function MainDiary() {
     <MainLayout>
       <Header />
       <DefaultLayout>
+        <button onClick={props.handleClick}>다크모드 토글</button>
         <Calendar
           onChange={onChange}
           value={value}
@@ -130,10 +131,10 @@ function MainDiary() {
 }
 
 const MainLayout = styled.div`
-  color: #444;
+  color: ${(props) => props.theme.bgText};
   line-height: 1.4;
   width: 100%;
-  background-color: #f5f5f5;
+  background-color: ${(props) => props.theme.bgBody};
   min-height: calc(100vh - 60px);
   height: 100%;
   //background: url("/images/black-bg.png") no-repeat;
@@ -148,18 +149,20 @@ const MainLayout = styled.div`
     margin-top: 12px;
     font-size: 20px;
     background-size: cover;
+    color: ${(props) => props.theme.text};
   }
   .diary-box {
     margin: 0 auto;
     width: 100%;
     textarea {
       border-radius: 10px;
-      border: 1px solid #ddd;
+      border: 1px solid ${(props) => props.theme.lightDashed};
       max-width: 400px;
       font-size: 16px;
       width: 100%;
       line-height: 1.6;
-      color: #444;
+      color: ${(props) => props.theme.text};
+      background-color: ${(props) => props.theme.bgText};
       padding: 12px;
       display: block;
       margin: 20px auto 15px;
@@ -168,11 +171,11 @@ const MainLayout = styled.div`
       }
     }
     .done-btn {
-      color: #40684a;
+      color: ${(props) => props.theme.text};
       font-size: 14px;
       font-weight: 700;
-      background-color: #dbe9de;
-      border: 1px solid #ccc;
+      background-color: ${(props) => props.theme.bgText};
+      border: 1px solid ${(props) => props.theme.lightDashed};
       border-radius: 10px;
       padding: 6px 17px;
       content-visibility: auto;

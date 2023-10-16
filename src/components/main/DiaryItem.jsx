@@ -23,7 +23,8 @@ const DiaryItem = ({ list }) => {
   );
 };
 const Li = styled.li`
-  background-color: white;
+  background-color: ${(props) => props.theme.bgText};
+  color: ${(props) => props.theme.text};
   width: 100%;
   min-height: 70px;
   height: 100%;
@@ -32,7 +33,7 @@ const Li = styled.li`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border: 2px dashed #ccc;
+  border: 2px dashed ${(props) => props.theme.lightDashed};
   cursor: pointer;
   border-radius: 10px;
   .content {

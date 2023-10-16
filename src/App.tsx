@@ -1,26 +1,36 @@
 import Home from "./pages/Home";
 import CalendarPage from "./pages/CalendarPage";
 import DiaryDetail from "./pages/DiaryDetail";
-import { createGlobalStyle } from "styled-components";
+import { ThemeProvider, createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import React from "react";
-import {createTheme, CssBaseline, ThemeProvider} from "@mui/material";
-import "../src/styles/webfont.scss"
+import React, { useState } from "react";
+import { CssBaseline } from "@mui/material";
+import "../src/styles/webfont.scss";
+import theme from "./styles/theme";
+
 function App() {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const handleToggleTheme = () => {
+    setIsDarkMode((prev) => !prev);
+  };
 
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
-        <CssBaseline />
-        <GlobalStyles />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/calendar" element={<CalendarPage />} />
-        <Route path="/diaryDetail/:id" element={<DiaryDetail />} />
-      </Routes>
+      <CssBaseline />
+      <GlobalStyles />
+      <ThemeProvider theme={isDarkMode ? theme.darkTheme : theme.lightTheme}>
+        <Routes>
+          <Route path="/" element={<Home handleClick={handleToggleTheme} />} />
+          <Route path="/calendar" element={<CalendarPage />} />
+          <Route path="/diaryDetail/:id" element={<DiaryDetail />} />
+        </Routes>
+      </ThemeProvider>
     </BrowserRouter>
   );
 }
+
 const GlobalStyles = createGlobalStyle`
     ${reset};
     * {
