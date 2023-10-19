@@ -11,6 +11,7 @@ import {
   getDiaryItem,
 } from "../features/diarySlice";
 import ModalMsg from "../components/common/ModalMsg";
+import useAlert from "../components/hooks/useAlert";
 
 function DiaryDetail() {
   const { id } = useParams();
@@ -61,7 +62,7 @@ function DiaryDetail() {
     [dispatch(doneEditList)]
   );
 
-  const [alert, setAlert] = useState({ show: false });
+  const { alert, handleAlert } = useAlert();
 
   const handleDeleteList = useCallback(
     (item, e) => {
@@ -74,19 +75,10 @@ function DiaryDetail() {
           dateformat: item.dateformat,
         })
       );
-      handleAlert({ message: "delete success" });
+      handleAlert({ message: "delete success", time: undefined, path: "/" });
     },
     [dispatch, navigate]
   );
-
-  const handleAlert = ({ message }) => {
-    setAlert({ show: true, message });
-
-    setTimeout(() => {
-      navigate("/");
-      setAlert({ show: false });
-    }, 3000);
-  };
 
   const handleTextChange = useCallback(
     (e) => {

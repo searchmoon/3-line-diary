@@ -11,6 +11,7 @@ import DiaryItem from "./DiaryItem";
 import Pagination from "../Pagination";
 import Header from "../Header";
 import ModalMsg from "../common/ModalMsg";
+import useAlert from "../hooks/useAlert";
 
 function MainDiary() {
   const dispatch = useDispatch();
@@ -64,7 +65,7 @@ function MainDiary() {
   const [value, onChange] = useState(new Date());
   //(end)
 
-  const [alert, setAlert] = useState({ show: false });
+  const { alert, handleAlert } = useAlert();
 
   const handleDoneClick = useCallback(
     (e) => {
@@ -78,18 +79,10 @@ function MainDiary() {
         })
       );
       setTextValue("");
-      handleAlert({ message: "diary is added" });
+      handleAlert({ message: "diary is added", time: undefined, path: "" });
     },
-    [dispatch, textValue, value]
+    [dispatch, textValue, value, handleAlert]
   );
-
-  const handleAlert = ({ message }) => {
-    setAlert({ show: true, message });
-
-    setTimeout(() => {
-      setAlert({ show: false });
-    }, 2000);
-  };
 
   return (
     <MainLayout>
