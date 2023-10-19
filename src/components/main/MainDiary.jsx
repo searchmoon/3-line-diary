@@ -10,6 +10,7 @@ import moment from "moment";
 import DiaryItem from "./DiaryItem";
 import Pagination from "../Pagination";
 import Header from "../Header";
+import ModalMsg from "../common/ModalMsg";
 
 function MainDiary() {
   const dispatch = useDispatch();
@@ -62,17 +63,33 @@ function MainDiary() {
   //moment 라이브러리 사용하기 위한 useState(start)
   const [value, onChange] = useState(new Date());
   //(end)
-  const handleDoneClick = useCallback(() => {
-    dispatch(
-      addDiaryList({
-        value: textValue,
-        id: new Date().getTime(),
-        date: moment(value).format("YYYY/ MM/ DD/ ddd"),
-        dateformat: moment(value).format("YYMMDD"),
-      })
-    );
-    setTextValue("");
-  }, [dispatch(addDiaryList)]);
+
+  const [alert, setAlert] = useState({ show: false });
+
+  const handleDoneClick = useCallback(
+    (e) => {
+      e.preventDefault();
+      dispatch(
+        addDiaryList({
+          value: textValue,
+          id: new Date().getTime(),
+          date: moment(value).format("YYYY/ MM/ DD/ ddd"),
+          dateformat: moment(value).format("YYMMDD"),
+        })
+      );
+      setTextValue("");
+      handleAlert({ message: "diary is added" });
+    },
+    [dispatch, textValue, value]
+  );
+
+  const handleAlert = ({ message }) => {
+    setAlert({ show: true, message });
+
+    setTimeout(() => {
+      setAlert({ show: false });
+    }, 2000);
+  };
 
   return (
     <MainLayout>
@@ -85,25 +102,30 @@ function MainDiary() {
           calendarType="US"
           locale="en-US"
         />
+
         <div className={"selected-date"}>
           {moment(value).format("YYYY-MM-DD")}
           {" 's Diary"}
         </div>
+
         <div className="diary-box">
-          <textarea
-            type="text"
-            rows={7}
-            placeholder={"write your day"}
-            value={textValue}
-            onChange={handleTextChange}
-          ></textarea>
+          <div className="wrap-textBox">
+            <textarea
+              type="text"
+              rows={7}
+              placeholder={"write your day"}
+              value={textValue}
+              onChange={handleTextChange}
+            ></textarea>
+          </div>
           {textValue && (
             <button className="done-btn" onClick={handleDoneClick}>
               Done
             </button>
           )}
+          {alert.show && <ModalMsg message={alert.message} />}
         </div>
-        <div className={"imgimg"}></div>
+
         <Ul>
           {currentPosts.map((list) => (
             <DiaryItem list={list} key={list.id} value={value} />
@@ -127,37 +149,46 @@ const MainLayout = styled.div`
   background-color: ${(props) => props.theme.bgBody};
   min-height: calc(100vh - 60px);
   height: 100%;
-  //background: url("/images/black-bg.png") no-repeat;
-  //background-size: cover;
+
   ${DefaultLayout} {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
+
   .selected-date {
     margin-top: 12px;
     font-size: 20px;
     background-size: cover;
     color: ${(props) => props.theme.text};
   }
+
   .diary-box {
     margin: 0 auto;
     width: 100%;
-    textarea {
+
+    .wrap-textBox {
       border-radius: 10px;
       border: 1px solid ${(props) => props.theme.lightDashed};
+      background-color: ${(props) => props.theme.bgText};
       max-width: 400px;
       font-size: 16px;
       width: 100%;
-      line-height: 1.6;
-      color: ${(props) => props.theme.text};
-      background-color: ${(props) => props.theme.bgText};
-      padding: 12px;
+      padding: 6px;
       display: block;
       margin: 20px auto 15px;
-      &:focus {
-        outline: 1px solid gray;
+
+      textarea {
+        border: none;
+        width: 100%;
+        line-height: 1.6;
+        color: ${(props) => props.theme.text};
+        background-color: ${(props) => props.theme.bgText};
+
+        &:focus {
+          outline: none;
+        }
       }
     }
     .done-btn {

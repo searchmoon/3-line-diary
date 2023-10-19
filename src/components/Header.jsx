@@ -37,10 +37,7 @@ function Header({ leftIcon }) {
             onClick={handleGoSetting}
             style={{ cursor: "pointer" }}
           />
-          {openModal && (
-            // <SettingModal openModal={openModal} setOpenModal={setOpenModal} />
-            <SettingModal setOpenModal={setOpenModal} />
-          )}
+          {openModal && <SettingModal setOpenModal={setOpenModal} />}
         </div>
       </DefaultLayout>
     </HeaderLayout>

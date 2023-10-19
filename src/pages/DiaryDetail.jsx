@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Header from "../components/Header";
 import { DefaultLayout } from "../components/layout/Layout";
@@ -10,11 +10,13 @@ import {
   setStorageList,
   getDiaryItem,
 } from "../features/diarySlice";
+import ModalMsg from "../components/common/ModalMsg";
 
 function DiaryDetail() {
   const { id } = useParams();
   const location = useLocation();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const item = location.state;
 
   const lists = useSelector((state) => state.diary.lists);
@@ -43,6 +45,7 @@ function DiaryDetail() {
   const handleEditText = useCallback(() => {
     setIsEditing(!isEditing);
   }, []);
+
   const handleDoneEdit = useCallback(
     (item) => {
       dispatch(
@@ -57,8 +60,12 @@ function DiaryDetail() {
     },
     [dispatch(doneEditList)]
   );
+
+  const [alert, setAlert] = useState({ show: false });
+
   const handleDeleteList = useCallback(
-    (item) => {
+    (item, e) => {
+      e.preventDefault();
       dispatch(
         deleteList({
           value: item.value,
@@ -67,11 +74,20 @@ function DiaryDetail() {
           dateformat: item.dateformat,
         })
       );
-      alert("Delete completed");
-      window.location.href = "/3-line-diary";
+      handleAlert({ message: "delete success" });
     },
-    [dispatch(deleteList)]
+    [dispatch, navigate]
   );
+
+  const handleAlert = ({ message }) => {
+    setAlert({ show: true, message });
+
+    setTimeout(() => {
+      navigate("/");
+      setAlert({ show: false });
+    }, 3000);
+  };
+
   const handleTextChange = useCallback(
     (e) => {
       setDoneEditText(e.target.value);
@@ -106,9 +122,10 @@ function DiaryDetail() {
             ) : (
               <button onClick={handleEditText}>Edit</button>
             )}
-            <button onClick={() => handleDeleteList(item)}>Delete</button>
+            <button onClick={(e) => handleDeleteList(item, e)}>Delete</button>
           </div>
         </div>
+        {alert.show && <ModalMsg message={alert.message} />}
       </DefaultLayout>
     </DiaryDetailStyle>
   );
@@ -138,6 +155,7 @@ const DiaryDetailStyle = styled.div`
         border: none;
         font-size: 16px;
         width: 100%;
+        background-color: ${(props) => props.theme.bgText};
         color: ${(props) => props.theme.text};
         padding: 8px 12px;
         display: block;
@@ -160,7 +178,7 @@ const DiaryDetailStyle = styled.div`
         margin-right: 5px;
       }
       button {
-        color: ${(props) => props.theme.bgText};
+        color: ${(props) => props.theme.text};
         background-color: ${(props) => props.theme.lightDashed};
         display: inline-block;
         padding: 4px 8px;
@@ -170,7 +188,7 @@ const DiaryDetailStyle = styled.div`
         border: 1px solid #bbb;
         &:active {
           background-color: ${(props) => props.theme.dashed};
-          color: ${(props) => props.theme.bgText};
+          color: ${(props) => props.theme.text};
         }
       }
     }

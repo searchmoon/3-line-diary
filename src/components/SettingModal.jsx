@@ -13,7 +13,6 @@ const SettingModal = ({ setOpenModal }) => {
   const handleClickClose = useCallback(() => {
     setOpenModal((prev) => !prev);
     document.body.style.overflow = "unset";
-    console.log(mode);
   }, [setOpenModal]);
 
   const dispatch = useDispatch();
@@ -61,6 +60,7 @@ const ModalWrap = styled.div`
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1;
   .modal-content {
     position: absolute;
     top: 0;
