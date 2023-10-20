@@ -1,15 +1,16 @@
 {
   "files": {
-    "main.css": "/3-line-diary/static/css/main.1ea32cfc.css",
-    "main.js": "/3-line-diary/static/js/main.d2a854e6.js",
+    "main.css": "/3-line-diary/static/css/main.5feb159d.css",
+    "main.js": "/3-line-diary/static/js/main.6278ea1b.js",
     "static/media/EF_Diary.ttf": "/3-line-diary/static/media/EF_Diary.db1b4ca24444beb389f5.ttf",
     "static/media/CraftyNotesRegular-9YW77.ttf": "/3-line-diary/static/media/CraftyNotesRegular-9YW77.e4e7f95c202ef4e44016.ttf",
+    "service-worker.js": "/3-line-diary/service-worker.js",
     "index.html": "/3-line-diary/index.html",
-    "main.1ea32cfc.css.map": "/3-line-diary/static/css/main.1ea32cfc.css.map",
-    "main.d2a854e6.js.map": "/3-line-diary/static/js/main.d2a854e6.js.map"
+    "main.5feb159d.css.map": "/3-line-diary/static/css/main.5feb159d.css.map",
+    "main.6278ea1b.js.map": "/3-line-diary/static/js/main.6278ea1b.js.map"
   },
   "entrypoints": [
-    "static/css/main.1ea32cfc.css",
-    "static/js/main.d2a854e6.js"
+    "static/css/main.5feb159d.css",
+    "static/js/main.6278ea1b.js"
   ]
 }
