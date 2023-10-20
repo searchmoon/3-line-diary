@@ -22,7 +22,19 @@
     "react-scripts": "5.0.1",
     "styled-components": "^5.3.6",
     "styled-reset": "^4.4.2",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "workbox-background-sync": "6.6.0",
+    "workbox-broadcast-update": "6.6.0",
+    "workbox-cacheable-response": "6.6.0",
+    "workbox-core": "6.6.0",
+    "workbox-expiration": "6.6.0",
+    "workbox-google-analytics": "6.6.0",
+    "workbox-navigation-preload": "6.6.0",
+    "workbox-precaching": "6.6.0",
+    "workbox-range-requests": "6.6.0",
+    "workbox-routing": "6.6.0",
+    "workbox-strategies": "6.6.0",
+    "workbox-streams": "6.6.0"
   },
   "devDependencies": {
     "@babel/core": "7.16.0",
@@ -30,18 +42,15 @@
     "@emotion/babel-plugin": "11.3.0",
     "eslint": "8.21.0",
     "eslint-config-next": "12.2.4",
-    "eslint-plugin-react": "7.33.2",
-    "gh-pages": "^4.0.0"
+    "eslint-plugin-react": "7.33.2"
   },
   "scripts": {
     "start": "react-scripts start",
+    "pwd-start": "npm run build && npx serve -s build",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "eject": "react-scripts eject"
   },
-  "homepage": "https://searchmoon.github.io/3-line-diary",
   "eslintConfig": {
     "extends": [
       "react-app",
