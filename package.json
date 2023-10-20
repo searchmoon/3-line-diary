@@ -43,15 +43,17 @@
     "@emotion/babel-plugin": "11.3.0",
     "eslint": "8.21.0",
     "eslint-config-next": "12.2.4",
-    "eslint-plugin-react": "7.33.2"
+    "eslint-plugin-react": "7.33.2",
+    "gh-pages": "6.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
-    "pwd-start": "npm run build && npx serve -s build",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "gh-pages -d build"
   },
+  "homepage": "https://searchmoon.github.io/3-line-diary",
   "eslintConfig": {
     "extends": [
       "react-app",
