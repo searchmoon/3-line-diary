@@ -1,21 +1,20 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
-
 import InputBottomLine from "../common/input/InputBottomLine";
 import BtnPlain from "../common/buttons/BtnPlain";
 
-const SignInBasicForm = () => {
+const SignInBasicForm = ({ getDataForm, firebaseError }) => {
   const initialState = {
     username: "",
     password: "",
   };
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [inputValue, setInputValue] = useState(initialState);
-  const [errorMsg, setErrorMsg] = useState("");
-  const [userErrorMsg, setUserErrorMsg] = useState("");
-  const [pwdErrorMsg, setPwdErrorMsg] = useState("");
-  const [disabled, setDisabled] = useState(false);
+  // const [errorMsg, setErrorMsg] = useState("");
+  // const [userErrorMsg, setUserErrorMsg] = useState("");
+  // const [pwdErrorMsg, setPwdErrorMsg] = useState("");
+  // const [disabled, setDisabled] = useState(false);
+  const { username, password } = inputValue;
 
   const handleChangeInput = useCallback(
     (e) => {
@@ -25,14 +24,17 @@ const SignInBasicForm = () => {
       };
       setInputValue(nextInputValue);
       console.log(e.target.value);
-      console.log(inputValue.username);
-      console.log(inputValue.password);
+      console.log(username);
+      console.log(password);
       console.log(inputValue);
     },
     [inputValue]
   );
 
-  const handleSubmitLoginInfo = useCallback();
+  const handleSubmitSignIn = (e) => {
+    getDataForm(username, password);
+    e.preventDefault();
+  };
 
   return (
     <FormStyle>
@@ -40,7 +42,7 @@ const SignInBasicForm = () => {
         {/*<input onChange={handleChangeInput} ref={inputRef} value={inputValue.username} type={'text'} name={'username'}></input>*/}
         <InputBottomLine
           onChange={handleChangeInput}
-          value={inputValue.username}
+          value={username}
           type={"text"}
           name={"username"}
           placeholder={"아이디"}
@@ -48,17 +50,17 @@ const SignInBasicForm = () => {
         {/*{userErrorMsg && <p className={'error-msg'}>{userErrorMsg}</p>}*/}
         <InputBottomLine
           onChange={handleChangeInput}
-          value={inputValue.password}
+          value={password}
           type={"password"}
           name={"password"}
           placeholder={"비밀번호"}
         />
-        {pwdErrorMsg && <p className={" error-msg"}>{pwdErrorMsg}</p>}
+        {/* {pwdErrorMsg && <p className={" error-msg"}>{pwdErrorMsg}</p>} */}
       </div>
-      {errorMsg && <p className={"error-msg"}>{errorMsg}</p>}
+      {/* {errorMsg && <p className={"error-msg"}>{errorMsg}</p>} */}
       <BtnPlain
-        onClick={handleSubmitLoginInfo}
-        disabled={disabled}
+        onClick={handleSubmitSignIn}
+        // disabled={disabled}
         width={"100%"}
       >
         로 그 인

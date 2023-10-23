@@ -1,21 +1,17 @@
 import React, { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
-
 import InputBottomLine from "../common/input/InputBottomLine";
 import BtnPlain from "../common/buttons/BtnPlain";
+import { useForm } from "react-hook-form";
 
-const SignUpBasicForm = () => {
+const SignUpBasicForm = ({ getDataForm, firebaseError }) => {
   const initialState = {
     username: "",
     password: "",
   };
-  const navigate = useNavigate();
+
   const [inputValue, setInputValue] = useState(initialState);
-  const [errorMsg, setErrorMsg] = useState("");
-  const [userErrorMsg, setUserErrorMsg] = useState("");
-  const [pwdErrorMsg, setPwdErrorMsg] = useState("");
-  const [disabled, setDisabled] = useState(false);
+  const { username, password } = inputValue;
 
   const handleChangeInput = useCallback(
     (e) => {
@@ -25,40 +21,51 @@ const SignUpBasicForm = () => {
       };
       setInputValue(nextInputValue);
       console.log(e.target.value);
-      console.log(inputValue.username);
-      console.log(inputValue.password);
+      console.log(username);
+      console.log(password);
       console.log(inputValue);
     },
-    [inputValue]
+    [inputValue, username, password]
   );
 
-  const handleSubmitLoginInfo = useCallback();
+  const handleSubmitSignUp = (e) => {
+    console.log(firebaseError);
+    e.preventDefault();
+    getDataForm(username, password);
+  };
 
   return (
     <FormStyle>
       <div>
-        {/*<input onChange={handleChangeInput} ref={inputRef} value={inputValue.username} type={'text'} name={'username'}></input>*/}
         <InputBottomLine
           onChange={handleChangeInput}
-          value={inputValue.username}
+          value={username}
           type={"text"}
           name={"username"}
           placeholder={"아이디"}
         />
-        {/*{userErrorMsg && <p className={'error-msg'}>{userErrorMsg}</p>}*/}
+        {firebaseError.includes("auth/invalid-email") && (
+          <p>this is invalid-email</p>
+        )}
         <InputBottomLine
           onChange={handleChangeInput}
-          value={inputValue.password}
+          value={password}
           type={"password"}
           name={"password"}
           placeholder={"비밀번호"}
         />
-        {pwdErrorMsg && <p className={" error-msg"}>{pwdErrorMsg}</p>}
+        {firebaseError.includes("least 6") && (
+          <p>Password should be at least 6 characters</p>
+        )}
+        {/* setInterval */}
+
+        {/* {pwdErrorMsg && <p className={" error-msg"}>{pwdErrorMsg}</p>} */}
       </div>
-      {errorMsg && <p className={"error-msg"}>{errorMsg}</p>}
+      {/* {errorMsg && <p className={"error-msg"}>{errorMsg}</p>} */}
       <BtnPlain
-        onClick={handleSubmitLoginInfo}
-        disabled={disabled}
+        onClick={handleSubmitSignUp}
+        firebaseError={firebaseError}
+        // disabled={disabled}
         width={"100%"}
       >
         회 원 가 입

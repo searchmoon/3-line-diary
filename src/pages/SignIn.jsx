@@ -1,12 +1,44 @@
 import styled from "@emotion/styled";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SignInBasicForm from "../components/sign/SignInBasicForm";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import app from "../firebase";
+import { setUserInfo } from "../features/userSlice";
 
 const SignIn = () => {
+  const navigate = useNavigate();
+  const [firebaseError, setFirebaseError] = useState("");
+  const dispatch = useDispatch();
+
+  const auth = getAuth(app);
+
+  const handleSignIn = (email, password) => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        dispatch(
+          setUserInfo({
+            email: userCredential.user.email,
+            id: userCredential.user.uid,
+            token: userCredential.user.refreshToken,
+          })
+        );
+        navigate("/");
+        console.log("로그인 완료");
+      })
+      .catch((error) => {
+        return error && setFirebaseError("에러!!!");
+      });
+  };
+
   return (
     <SignInStyle>
       <p className={"main-title"}>3 LINE DIARY</p>
-      <SignInBasicForm />
+      <SignInBasicForm
+        getDataForm={handleSignIn}
+        firebaseError={firebaseError}
+      />
       <div className={"wrap-btn"}>
         <Link className={"link"} to={"/signUp"}>
           회원가입 | Google로 로그인하기
