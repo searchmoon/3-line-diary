@@ -6,6 +6,7 @@ import { Switch } from "@mui/material";
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setDarkMode } from "../features/themeSlice";
+import { Link } from "react-router-dom";
 
 const SettingModal = ({ setOpenModal }) => {
   const mode = useSelector((state) => state.theme.mode);
@@ -32,9 +33,15 @@ const SettingModal = ({ setOpenModal }) => {
           />
         </div>
         <li>
+          <Link className="link" to="/signIn">
+            <MdLanguage />
+            <p>Login/Logout</p>
+          </Link>
+        </li>
+        {/* <li>
           <MdLanguage />
           <p>Language</p>
-        </li>
+        </li> */}
         <li>
           <BiBell />
           <p>Notifications</p>
@@ -93,6 +100,10 @@ const ModalWrap = styled.div`
         color: ${(props) => props.theme.bgText};
       }
 
+      .link {
+        display: flex;
+        align-items: center;
+      }
       p {
         margin-left: 10px;
         height: 18px;

@@ -29,8 +29,10 @@ function Header({ leftIcon }) {
               <BiCalendar size={22} />
             </Link>
           )}
-          <div className="title">
-            <Link to="/">3 LINE DIARY</Link>
+          <div>
+            <Link className="title" to="/">
+              3 LINE DIARY
+            </Link>
           </div>
           <IoSettingsOutline
             size={20}

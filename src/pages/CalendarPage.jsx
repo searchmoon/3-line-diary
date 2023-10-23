@@ -54,7 +54,7 @@ const CalendarStyle = styled.div`
   background-color: ${(props) => props.theme.bgBody};
   color: ${(props) => props.theme.text};
   min-height: calc(100vh - 60px);
-  height: 100%;
+  height: 100vh;
   width: 100%;
   ${DefaultLayout} {
     width: 100%;

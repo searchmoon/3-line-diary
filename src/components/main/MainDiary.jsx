@@ -12,6 +12,7 @@ import Pagination from "../Pagination";
 import Header from "../Header";
 import ModalMsg from "../common/ModalMsg";
 import useAlert from "../hooks/useAlert";
+import Footer from "../Footer";
 
 function MainDiary() {
   const dispatch = useDispatch();
@@ -131,6 +132,7 @@ function MainDiary() {
           currentPage={currentPage}
         />
       </DefaultLayout>
+      <Footer />
     </MainLayout>
   );
 }

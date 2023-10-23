@@ -9,7 +9,9 @@ const useAlert = () => {
     setAlert({ show: true, message });
 
     setTimeout(() => {
-      navigate(path);
+      if (path === undefined) {
+        window.history.back();
+      } else navigate(path);
       setAlert({ show: false });
     }, time);
   };

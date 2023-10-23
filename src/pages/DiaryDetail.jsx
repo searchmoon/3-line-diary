@@ -47,6 +47,8 @@ function DiaryDetail() {
     setIsEditing(!isEditing);
   }, []);
 
+  const { alert, handleAlert } = useAlert();
+
   const handleDoneEdit = useCallback(
     (item) => {
       dispatch(
@@ -58,11 +60,15 @@ function DiaryDetail() {
         })
       );
       setIsEditing(!isEditing);
+      handleAlert({
+        message: "Edit success",
+        time: undefined,
+      });
     },
     [dispatch(doneEditList)]
   );
 
-  const { alert, handleAlert } = useAlert();
+  // const { alert, handleAlert } = useAlert();
 
   const handleDeleteList = useCallback(
     (item, e) => {
@@ -126,7 +132,7 @@ function DiaryDetail() {
 const DiaryDetailStyle = styled.div`
   background-color: ${(props) => props.theme.bgBody};
   min-height: calc(100vh - 60px);
-  height: 100%;
+  height: 100vh;
   color: ${(props) => props.theme.text};
   line-height: 1.4;
   .wrap-diary-list {
