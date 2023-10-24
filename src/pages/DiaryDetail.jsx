@@ -45,6 +45,7 @@ function DiaryDetail() {
 
   const handleEditText = useCallback(() => {
     setIsEditing(!isEditing);
+    console.log(location);
   }, []);
 
   const { alert, handleAlert } = useAlert();

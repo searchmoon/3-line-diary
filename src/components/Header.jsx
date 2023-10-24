@@ -1,20 +1,40 @@
 import React, { useCallback, useState } from "react";
 import { DefaultLayout } from "./layout/Layout";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IoSettingsOutline } from "react-icons/io5";
 import { BiCalendar } from "react-icons/bi";
 import { HiOutlineChevronLeft } from "react-icons/hi";
+import { FiLogOut } from "react-icons/fi";
+import { FiLogIn } from "react-icons/fi";
 import SettingModal from "./SettingModal";
+import { getAuth, signOut } from "firebase/auth";
+import app from "../firebase";
 
 function Header({ leftIcon }) {
   const [openModal, setOpenModal] = useState(false);
+  const auth = getAuth(app);
+  const user = auth.currentUser;
+  const navigate = useNavigate();
 
   const handleGoSetting = useCallback(() => {
     setOpenModal(!openModal);
     document.body.style.overflow = "hidden";
     //모달창 스크롤 방지
   }, [openModal]);
+
+  console.log(auth);
+  const handleLogout = () => {
+    signOut(auth)
+      .then(() => {
+        alert("로그아웃 되었습니다.");
+        navigate("/");
+        //setUserData({}) //setUserData는 redux 에 담아준 후에 가져오기. login page 에 있다
+      })
+      .catch((error) => {
+        // An error happened.
+      });
+  };
 
   return (
     <HeaderLayout>
@@ -34,11 +54,26 @@ function Header({ leftIcon }) {
               3 LINE DIARY
             </Link>
           </div>
-          <IoSettingsOutline
-            size={20}
-            onClick={handleGoSetting}
-            style={{ cursor: "pointer" }}
-          />
+          <div className="right-navBox">
+            {user ? (
+              <div onClick={handleLogout} className="sign-box">
+                <FiLogOut size={20} />
+                <p>logout</p>
+              </div>
+            ) : (
+              <Link to={"/signIn"}>
+                <div className="sign-box">
+                  <FiLogIn size={20} />
+                  <p>login</p>
+                </div>
+              </Link>
+            )}
+            <IoSettingsOutline
+              size={20}
+              onClick={handleGoSetting}
+              style={{ cursor: "pointer" }}
+            />
+          </div>
           {openModal && <SettingModal setOpenModal={setOpenModal} />}
         </div>
       </DefaultLayout>
@@ -66,6 +101,19 @@ const HeaderLayout = styled.div`
     .title {
       font-size: 20px;
       font-weight: 700;
+    }
+    .right-navBox {
+      display: flex;
+      align-items: center;
+      .sign-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-right: 10px;
+        p {
+          font-size: 12px;
+        }
+      }
     }
   }
 `;

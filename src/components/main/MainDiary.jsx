@@ -54,6 +54,7 @@ function MainDiary() {
 
   useEffect(() => {
     jsonLocalStorage.setItem("diaryList", lists);
+    jsonLocalStorage.setItem("user", lists);
   }, [lists]);
 
   const handleTextChange = useCallback(

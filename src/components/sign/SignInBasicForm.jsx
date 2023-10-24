@@ -2,6 +2,7 @@ import React, { useCallback, useState } from "react";
 import styled from "styled-components";
 import InputBottomLine from "../common/input/InputBottomLine";
 import BtnPlain from "../common/buttons/BtnPlain";
+import { useLocation } from "react-router-dom";
 
 const SignInBasicForm = ({ getDataForm, firebaseError }) => {
   const initialState = {
@@ -9,6 +10,7 @@ const SignInBasicForm = ({ getDataForm, firebaseError }) => {
     password: "",
   };
   // const navigate = useNavigate();
+
   const [inputValue, setInputValue] = useState(initialState);
   // const [errorMsg, setErrorMsg] = useState("");
   // const [userErrorMsg, setUserErrorMsg] = useState("");

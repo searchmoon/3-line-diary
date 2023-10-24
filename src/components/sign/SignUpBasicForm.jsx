@@ -29,8 +29,8 @@ const SignUpBasicForm = ({ getDataForm, firebaseError }) => {
   );
 
   const handleSubmitSignUp = (e) => {
-    console.log(firebaseError);
     e.preventDefault();
+    console.log(firebaseError);
     getDataForm(username, password);
   };
 
