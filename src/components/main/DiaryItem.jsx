@@ -1,11 +1,11 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
 const DiaryItem = ({ list }) => {
   const navigate = useNavigate();
 
-  const handleGoDetail = useCallback((list) => {
+  const handleGoDetail = useCallback(() => {
     navigate(`/diaryDetail/${list.id}`, {
       state: {
         value: list.value,
@@ -14,14 +14,15 @@ const DiaryItem = ({ list }) => {
         dateformat: list.dateformat,
       },
     });
-  }, []);
+  }, [navigate, list]);
   return (
-    <Li onClick={() => handleGoDetail(list)}>
+    <Li onClick={handleGoDetail}>
       <pre className={"content"}>{list.value}</pre>
       <p className={"date"}>{list.date}</p>
     </Li>
   );
 };
+
 const Li = styled.li`
   background-color: ${(props) => props.theme.bgText};
   color: ${(props) => props.theme.text};

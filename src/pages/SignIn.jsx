@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import SignInBasicForm from "../components/sign/SignInBasicForm";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   getAuth,
   signInWithEmailAndPassword,
@@ -12,13 +12,18 @@ import {
 } from "firebase/auth";
 import app from "../firebase";
 import { setUserInfo } from "../features/userSlice";
+import { setUserData } from "../features/user2Slice";
 
 const SignIn = () => {
   const navigate = useNavigate();
   const [firebaseError, setFirebaseError] = useState("");
   const dispatch = useDispatch();
   const { pathname } = useLocation();
-  const [userData, setUserData] = useState({}); //로그인 한 후의 정보를 담아준다.
+  const user = useSelector((state) => state.user?.user);
+  console.log(user);
+  // const userData = useSelector((state) => state.user2.userData);
+  // console.log("userData", userData);
+  // const [userData, setUserData] = useState({}); //로그인 한 후의 정보를 담아준다.
 
   const provider = new GoogleAuthProvider(); //GoogleAuthProvider를 호출하고 provider 인스턴스 생성함
 
@@ -27,8 +32,17 @@ const SignIn = () => {
   const handleSignIn = (email, password) => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
+        console.log(userCredential);
         dispatch(
           setUserInfo({
+            email: userCredential.user.email,
+            id: userCredential.user.uid,
+            token: userCredential.user.refreshToken,
+          })
+        );
+        localStorage.setItem(
+          "user",
+          JSON.stringify({
             email: userCredential.user.email,
             id: userCredential.user.uid,
             token: userCredential.user.refreshToken,
@@ -45,9 +59,26 @@ const SignIn = () => {
   const handleAuth = () => {
     signInWithPopup(auth, provider)
       .then((res) => {
-        console.log(res);
+        console.log(res.user);
+        console.log(res.user.accessToken);
+        console.log("res.user", typeof res.user);
         // google 로그인 해줄 때 로그인 정보가 여기에 담긴다.
-        setUserData(res.user);
+        dispatch(
+          setUserData({
+            token: res.user.accessToken,
+            email: res.user.email,
+            emailVerified: res.user.emailVerified,
+            id: res.user.uid,
+          })
+        );
+        localStorage.setItem(
+          "user",
+          JSON.stringify({
+            email: res.user.email,
+            id: res.user.uid,
+            token: res.user.refreshToken,
+          })
+        );
       })
       .catch((error) => {
         console.log(error);
@@ -57,7 +88,7 @@ const SignIn = () => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       // user 정보가 있으면 "/" 경로로 가기
-      console.log(user);
+      console.log("user", typeof user);
       if (!user) {
         navigate("/signIn");
       } else if (user && pathname === "/signIn") {

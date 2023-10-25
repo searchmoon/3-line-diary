@@ -10,12 +10,15 @@ import { FiLogIn } from "react-icons/fi";
 import SettingModal from "./SettingModal";
 import { getAuth, signOut } from "firebase/auth";
 import app from "../firebase";
+import { useDispatch } from "react-redux";
+import { removeUser } from "../features/userSlice";
 
 function Header({ leftIcon }) {
   const [openModal, setOpenModal] = useState(false);
   const auth = getAuth(app);
   const user = auth.currentUser;
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleGoSetting = useCallback(() => {
     setOpenModal(!openModal);
@@ -23,12 +26,15 @@ function Header({ leftIcon }) {
     //모달창 스크롤 방지
   }, [openModal]);
 
+  const isLogin = JSON.parse(localStorage.getItem("user"));
+
   console.log(auth);
   const handleLogout = () => {
     signOut(auth)
       .then(() => {
         alert("로그아웃 되었습니다.");
         navigate("/");
+        dispatch(removeUser());
         //setUserData({}) //setUserData는 redux 에 담아준 후에 가져오기. login page 에 있다
       })
       .catch((error) => {
@@ -55,7 +61,7 @@ function Header({ leftIcon }) {
             </Link>
           </div>
           <div className="right-navBox">
-            {user ? (
+            {isLogin?.token ? (
               <div onClick={handleLogout} className="sign-box">
                 <FiLogOut size={20} />
                 <p>logout</p>
@@ -110,6 +116,7 @@ const HeaderLayout = styled.div`
         flex-direction: column;
         align-items: center;
         margin-right: 10px;
+        cursor: pointer;
         p {
           font-size: 12px;
         }
