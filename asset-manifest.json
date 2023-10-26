@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/3-line-diary/static/css/main.7997777a.css",
+    "main.js": "/3-line-diary/static/js/main.6dc38f70.js",
+    "static/media/EF_Diary.ttf": "/3-line-diary/static/media/EF_Diary.db1b4ca24444beb389f5.ttf",
+    "static/media/CraftyNotesRegular-9YW77.ttf": "/3-line-diary/static/media/CraftyNotesRegular-9YW77.e4e7f95c202ef4e44016.ttf",
+    "service-worker.js": "/3-line-diary/service-worker.js",
+    "index.html": "/3-line-diary/index.html",
+    "main.7997777a.css.map": "/3-line-diary/static/css/main.7997777a.css.map",
+    "main.6dc38f70.js.map": "/3-line-diary/static/js/main.6dc38f70.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7997777a.css",
+    "static/js/main.6dc38f70.js"
+  ]
+}
